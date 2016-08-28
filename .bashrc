@@ -35,10 +35,6 @@ man() {
 export EDITOR=vim
 export TERMINAL=xfce4-terminal
 
-# set LANG to chinese
-# do it in xinitrc
-#export LANG=zh_CN.UTF-8
-
 # set for java
 #export JAVA_HOME=/usr/lib/jvm/java-8-jdk
 #export JRE_HOME=$JAVA_HOME/jre
