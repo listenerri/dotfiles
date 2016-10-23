@@ -43,13 +43,18 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 
-# set for fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+# set for input method
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+# run ibus
+ibus-daemon -drx
 
 # set LANG to chinese
 export LANG=zh_CN.UTF-8
+
+# map key "Menu" to key "Super_L"
+echo "keysym Menu = Super_L" | xmodmap -
 
 # run xfce4
 #thunar --daemon &
@@ -57,3 +62,6 @@ export LANG=zh_CN.UTF-8
 
 # run i3
 exec i3
+
+# run dde
+#exec startdde
