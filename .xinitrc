@@ -53,9 +53,6 @@ ibus-daemon -drx
 # set LANG to chinese
 export LANG=zh_CN.UTF-8
 
-# map key "Menu" to key "Super_L"
-echo "keysym Menu = Super_L" | xmodmap -
-
 # run xfce4
 #thunar --daemon &
 #exec startxfce4
