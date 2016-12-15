@@ -56,4 +56,6 @@ export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/dbhome_1
 # oracle database sid
 export ORACLE_SID=orcl
 export ORACLE_UNQNAME=orcl
-export PATH=$PATH:$ORACLE_HOME/bin:$ORACLE_HOME/sqldeveloper/sqldeveloper/bin/
+
+
+export PATH=$PATH:$ORACLE_HOME/bin:$ORACLE_HOME/sqldeveloper/sqldeveloper/bin/:/home/ri/shells
