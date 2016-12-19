@@ -44,11 +44,11 @@ fi
 #exec xterm -geometry 80x66+0+0 -name login
 
 # set for input method
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 # run ibus
-ibus-daemon -drx
+#ibus-daemon -drx
 
 # set LANG to chinese
 export LANG=zh_CN.UTF-8
