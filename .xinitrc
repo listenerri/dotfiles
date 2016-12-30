@@ -58,8 +58,8 @@ export LANG=zh_CN.UTF-8
 #exec startxfce4
 
 # run i3
-thunar --daemon &
-exec i3
+#thunar --daemon &
+#exec i3
 
 # run dde
-#exec startdde
+exec startdde
