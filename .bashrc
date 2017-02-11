@@ -33,7 +33,6 @@ man() {
 }
 
 export EDITOR=vim
-export TERMINAL=xfce4-terminal
 
 # set for java
 #export JAVA_HOME=/usr/lib/jvm/java-8-jdk
