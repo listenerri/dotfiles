@@ -20,6 +20,7 @@ alias ls='ls -F --color=auto'
 alias info='info --vi-keys'
 alias en='export LANG=en_US.UTF-8 && export LANGUAGE=en_US'
 alias zh='export LANG=zh_CN.UTF-8 && export LANGUAGE=zh_CN'
+alias ..='cd ..'
 
 # Set colors for man pages
 man() {
