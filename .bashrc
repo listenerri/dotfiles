@@ -37,12 +37,12 @@ man() {
 
 export EDITOR=vim
 
-# set for java
-#export JAVA_HOME=/usr/lib/jvm/java-8-jdk
-#export JRE_HOME=$JAVA_HOME/jre
-#export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-#export PATH=$PATH:$JAVA_HOME/bin
-#unset _JAVA_OPTIONS
+# set for java(arch linux)
+export JAVA_HOME=/usr/lib/jvm/default
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+unset _JAVA_OPTIONS
 
 # set for eclipse
 export ECLIPSE_HOME=/usr/lib/eclipse
