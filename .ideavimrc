@@ -1,0 +1,228 @@
+" 不兼容vi
+" compatible
+set nocp
+
+
+
+
+
+" ##########################vim选项设置##########################
+" 每一个设置上面都有中文翻译,和完整的设置名称
+" 因为大部分设置使用的都是简写
+
+" 允许跨行移动的按键
+" whichwrap
+set ww=b,s,h,l,<,>
+
+" 禁止跳转时光标移动到非空字符
+" 默认当跳转时光标会移动到那一行的非空字符处
+set nosol
+
+" 输入搜索关键字时跳转到匹配的结果
+" 但并未真正跳转,仍需要按enter键才会真正跳转
+" 找不到匹配或按esc键则回到光标原来的位置
+" incsearch
+set is
+
+" 搜索不区分大小写
+" ignorecase
+set ic
+
+" 搜索智能区分大小写
+" 本选项的作用是配合上面不区分大小写的设置
+" 这样,只要包含一个大写字母则搜索时区分大小写
+" smartcase
+set scs
+
+" 光标上下最少保留行数
+" 比如当向下移动光标时,光标不会移动到当前编辑区最低部
+" 才开始滚动编辑区,这样能保证看到部分连续的上下文
+" scrolloff
+set so=4
+
+" 同上,但对横向滚动起作用,且只有设置了nowrap(下面)的时候才起作用
+" sidescrolloff
+set siso=4
+
+" 是否把超出编辑区显示范围的行,按多行显示
+" wrap
+set wrap
+
+" 显示行数
+" number
+set nu
+
+" 高亮搜索时匹配到的搜过结果
+" hlsearch
+set hls
+
+" 高亮光标所在列和行
+" cursorcolumn
+" cursorline
+set cuc
+set cul
+
+" 何时有底部的状态行:0,永不;1,至少两个窗口;2,总是显示
+" laststatus
+set ls=2
+
+" 状态行显示的内容
+" statusline
+set stl=%t%m%r%h%w%=[%c-%l]%P
+
+" 启动鼠标
+" mouse
+set mouse=a
+
+" 在状态行显示命令
+" showcmd
+set sc
+
+" 确认对话框
+" 多用于退出时文件已修改但未保存时询问,询问选项有:
+" 保存,不保存,取消
+" confirm
+set cf
+
+" 以下四个选项设置了使用4个空格代替tab制表符
+" 文件里制表键代表的空格数
+" tabstop
+set ts=4
+" (自动)缩进时的空格数目
+" shiftwidth
+set sw=4
+" 行首一次性插入或删除sw所设置的空格数
+" smarttab
+set sta
+" 输入制表键时以空格代替
+" expandtab
+set et
+
+" 自动缩进
+" autoindent
+set ai
+
+" 智能缩进
+" 主要适用于c这样的程序,也可能适用于其他程序
+" 另外,对于c程序还有更好但也更严谨,配置更复杂的cindent
+" smartindent
+set si
+
+" 自动重新读入
+" 如果vim发现文件在其他地方被修改了,自动重新读入
+" autoread
+set ar
+
+" 自动写入(不包含"edit","quit"等命令,如需包含参见autowriteall)
+" 当在执行一些跳转,离开本缓冲区的命令时自动写入文件,如:
+" :next,:last,:stop,:suspend,CTRL-],CTRL-O,'{A-Z0-9}等
+" autowrite
+set aw
+
+" 命令行补全菜单
+" 在命令行按tab键补全命令时,在命令行上方出现可能的匹配
+" 使用tab键或CTRL-P/CTRL-N移动到合适的匹配上
+" 上键:文件名/菜单名补全中: 上移到父目录或父菜单
+" 下键:文件名/菜单名补全中: 移进子目录和子菜单
+" 回车键:菜单补全中，如果光标在句号之后: 移进子菜单
+" wildmenu
+set wmnu
+" 默认左键和右键也是选择匹配,修改按键令其移动光标
+cnoremap <Left> <Space><BS><Left>
+cnoremap <Right> <Space><BS><Right>
+
+" 以下设置一些超时时间(超过这个时间后才不在等待后续按键)
+" 这样可以避免状态栏提示信息的一点延迟
+" 开启映射超迟(默认是开启):自己定义的按键映射比如<Space>y
+set timeout
+" 设置映射超迟时间(默认是1000)
+set timeoutlen=3000
+" 开启键码超迟(默认是关闭):比如按ESC键退出插入,命令,可视模式的超时
+set ttimeout
+" 设置键码超时时间(默认是负数也就是关闭,关闭时由timeoutlen的值管理键码超时)
+set ttimeoutlen=100
+
+
+
+
+
+" ##########################按键映射设置##########################
+" map:全局的映射,映射之后的按键可以递归(被再次映射)
+" noremap:全局的映射,但映射后的按键不可递归(多用于定义一个命令)
+" unmap:删除一个映射
+" mapclear:删除所有映射
+" 映射也区分模式,如果上述命令前有如下字符,则该命令只对该模式生效:
+" n:normal(正常)模式下
+" v:可视模式
+" i:插入模式
+" c:命令行模式
+
+" 更方便的进入命令模式
+nnoremap <Space>; :
+
+" 插入模式下快速移动光标
+inoremap <C-H> <Left>
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-L> <Right>
+
+" 插入二合字符
+" 默认是<C-K>,但已被上面的定义所占用
+inoremap <Insert> <C-K>
+
+" 快速移动到行尾航首
+" 直接使用map命令从而全局不适用H,L的原功能
+map H ^
+map L $
+
+" 复制到系统剪切板
+noremap <Space>y "+y
+
+" 复制行到系统剪切板
+noremap <Space>Y "+yy
+
+" 剪切到系统剪切板
+noremap <Space>d "+d
+
+" 从系统剪切板粘贴
+noremap <Space>p "+p
+noremap <Space>P "+P
+
+" 保存和退出
+nnoremap <Space>q :q<CR>
+nnoremap <Space>w :w<CR>
+
+" 保证搜索结果高亮,避免下面取消高亮后在此搜索没有高亮
+nnoremap n :set hlsearch<CR>nzz
+nnoremap N :set hlsearch<CR>Nzz
+
+" 取消搜索的高亮
+nnoremap <Space><Space> :set nohlsearch<cr>
+
+" 快速搜索光标下的单词
+" 向下搜索
+nnoremap <Space>/ :set hlsearch<CR>viwy/<C-R>"<CR>
+" 向上搜索
+nnoremap <Space>? :set hlsearch<CR>viwy?<C-R>"<CR>
+
+" 快速可视模式下搜索高亮的内容
+" 向下搜索
+vnoremap / y:set hlsearch<CR>/<C-R>"<CR>
+" 向上搜索
+vnoremap ? y:set hlsearch<CR>?<C-R>"<CR>
+
+" 窗口切换
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+
+
+
+
+" ##########################按键映射IDEA##########################
+nnoremap <Space>gg :action GotoDeclaration<CR>
+nnoremap <Space>ln :action GotoNextError<CR>
+nnoremap <Space>lp :action GotoPreviousError<CR>
+nnoremap <Space>f :action GotoFile<CR>
