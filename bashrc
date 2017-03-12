@@ -1,9 +1,40 @@
-#
-# ~/.bashrc
-#
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+
 
 
 
@@ -44,20 +75,8 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export PATH=$PATH:$JAVA_HOME/bin
 unset _JAVA_OPTIONS
 
-# set for eclipse
-export ECLIPSE_HOME=/usr/lib/eclipse
-
 # set for android
 export ANDROID_HOME=/home/ri/android-sdk-linux
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-
-# set for oracle database
-# oracle install path
-export ORACLE_BASE=/home/ri/oracle_11gR2_database/ri
-export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/dbhome_1
-# oracle database sid
-export ORACLE_SID=orcl
-export ORACLE_UNQNAME=orcl
-
 
 export PATH=$PATH:$ORACLE_HOME/bin:$ORACLE_HOME/sqldeveloper/sqldeveloper/bin/:/home/ri/shells
