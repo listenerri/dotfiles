@@ -68,15 +68,15 @@ man() {
 
 export EDITOR=vim
 
-# set for java(arch linux)
-export JAVA_HOME=/usr/lib/jvm/default
-export JRE_HOME=$JAVA_HOME/jre
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export PATH=$PATH:$JAVA_HOME/bin
-unset _JAVA_OPTIONS
+# set for java
+#export JAVA_HOME=/usr/lib/jvm/default
+#export JRE_HOME=$JAVA_HOME/jre
+#export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+#export PATH=$PATH:$JAVA_HOME/bin
+#unset _JAVA_OPTIONS
 
 # set for android
-export ANDROID_HOME=/home/ri/android-sdk-linux
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+#export ANDROID_HOME=/home/ri/android-sdk-linux
+#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-export PATH=$PATH:$ORACLE_HOME/bin:$ORACLE_HOME/sqldeveloper/sqldeveloper/bin/:/home/ri/shells
+export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin:/home/ri/shells
