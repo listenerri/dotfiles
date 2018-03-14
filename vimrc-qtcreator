@@ -1,0 +1,138 @@
+
+" ##vimrc for qt creator##
+
+
+" 禁止跳转时光标移动到非空字符
+" 默认当跳转时光标会移动到那一行的非空字符处
+" nostartofline
+set nosol
+
+" 输入搜索关键字时跳转到匹配的结果
+" 但并未真正跳转,仍需要按enter键才会真正跳转
+" 找不到匹配或按esc键则回到光标原来的位置
+" incsearch
+set is
+
+" 搜索不区分大小写
+" ignorecase
+set ic
+
+" 搜索智能区分大小写
+" 本选项的作用是配合上面不区分大小写的设置
+" 这样,只要包含一个大写字母则搜索时区分大小写
+" smartcase
+set scs
+
+" 光标上下最少保留行数
+" 比如当向下移动光标时,光标不会移动到当前编辑区最低部
+" 才开始滚动编辑区,这样能保证看到部分连续的上下文
+" scrolloff
+set so=4
+
+" 高亮搜索时匹配到的搜过结果
+" hlsearch
+set hls
+
+" 在状态行显示命令
+" showcmd
+set sc
+
+" 以下四个选项设置了使用4个空格代替tab制表符
+" 文件里制表键代表的空格数
+" tabstop
+set ts=4
+" (自动)缩进时的空格数目
+" shiftwidth
+set sw=4
+" 行首一次性插入或删除sw所设置的空格数
+" smarttab
+set sta
+" 输入制表键时以空格代替
+" expandtab
+set et
+
+" 自动缩进
+" autoindent
+set ai
+
+" 智能缩进
+" 主要适用于c这样的程序,也可能适用于其他程序
+" 另外,对于c程序还有更好但也更严谨,配置更复杂的cindent
+" smartindent
+set si
+
+
+
+
+
+" 更方便的进入命令模式
+nnoremap <leader>; :
+
+" 插入模式下快速移动光标
+inoremap <C-H> <Left>
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-L> <Right>
+inoremap <Left> <Esc>^i
+inoremap <Down> <Esc>o
+inoremap <Up> <Esc>O
+inoremap <Right> <Esc>$a
+
+" 快速移动到行尾航首
+" 直接使用map命令从而全局不适用H,L的原功能
+map H ^
+map L $
+
+" 保存和退出
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+
+" 保证搜索结果高亮,避免下面取消高亮后在此搜索没有高亮
+nnoremap n :set hlsearch<CR>nzz
+nnoremap N :set hlsearch<CR>Nzz
+
+" 取消搜索的高亮
+nnoremap <leader><Space> :set nohlsearch<cr>
+
+" 复制到系统剪切板
+" 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
+" 不能正常完成这个map
+noremap <leader>y "+y"
+
+" 复制行到系统剪切板
+" 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
+" 不能正常完成这个map
+noremap <leader>Y "+yy"
+
+" 剪切到系统剪切板
+" 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
+" 不能正常完成这个map
+noremap <leader>d "+d"
+
+" 从系统剪切板粘贴
+" 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
+" 不能正常完成这个map
+noremap <leader>p "+p"
+noremap <leader>P "+P"
+
+" 快速搜索光标下的单词
+" 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
+" 不能正常完成这个map
+" 向下搜索
+nnoremap <leader>/ :set hlsearch<CR>viwy/<C-R>"<CR>"
+" 向上搜索
+nnoremap <leader>? :set hlsearch<CR>viwy?<C-R>"<CR>"
+
+" 快速可视模式下搜索高亮的内容
+" 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
+" 不能正常完成这个map
+" 向下搜索
+vnoremap / y:set hlsearch<CR>/<C-R>"<CR>"
+" 向上搜索
+vnoremap ? y:set hlsearch<CR>?<C-R>"<CR>"
+
+" 窗口切换
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
