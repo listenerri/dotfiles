@@ -73,10 +73,6 @@ inoremap <C-H> <Left>
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
 inoremap <C-L> <Right>
-inoremap <Left> <Esc>^i
-inoremap <Down> <Esc>o
-inoremap <Up> <Esc>O
-inoremap <Right> <Esc>$a
 
 " 快速移动到行尾航首
 " 直接使用map命令从而全局不适用H,L的原功能
