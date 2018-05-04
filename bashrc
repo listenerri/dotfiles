@@ -79,4 +79,4 @@ unset _JAVA_OPTIONS
 #export ANDROID_HOME=/home/ri/android-sdk-linux
 #export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-export PATH=$HOME/.local/bin:$HOME/shells:$PATH:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/shells:$PATH:/usr/local/sbin:/usr/sbin:/sbin

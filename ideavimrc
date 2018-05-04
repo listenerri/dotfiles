@@ -1,22 +1,5 @@
-" 不兼容vi
-" compatible
-set nocp
+" ##vimrc for ideavim##
 
-
-
-
-
-" ##########################vim选项设置##########################
-" 每一个设置上面都有中文翻译,和完整的设置名称
-" 因为大部分设置使用的都是简写
-
-" 允许跨行移动的按键
-" whichwrap
-set ww=b,s,h,l,<,>
-
-" 禁止跳转时光标移动到非空字符
-" 默认当跳转时光标会移动到那一行的非空字符处
-set nosol
 
 " 输入搜索关键字时跳转到匹配的结果
 " 但并未真正跳转,仍需要按enter键才会真正跳转
@@ -44,92 +27,16 @@ set so=4
 " sidescrolloff
 set siso=4
 
-" 是否把超出编辑区显示范围的行,按多行显示
-" wrap
-set wrap
-
 " 显示行数
 " number
 set nu
+" relativenumber
+set rnu
 
 " 高亮搜索时匹配到的搜过结果
 " hlsearch
 set hls
 
-" 高亮光标所在列和行
-" cursorcolumn
-" cursorline
-set cuc
-set cul
-
-" 何时有底部的状态行:0,永不;1,至少两个窗口;2,总是显示
-" laststatus
-set ls=2
-
-" 状态行显示的内容
-" statusline
-set stl=%t%m%r%h%w%=[%c-%l]%P
-
-" 启动鼠标
-" mouse
-set mouse=a
-
-" 在状态行显示命令
-" showcmd
-set sc
-
-" 确认对话框
-" 多用于退出时文件已修改但未保存时询问,询问选项有:
-" 保存,不保存,取消
-" confirm
-set cf
-
-" 以下四个选项设置了使用4个空格代替tab制表符
-" 文件里制表键代表的空格数
-" tabstop
-set ts=4
-" (自动)缩进时的空格数目
-" shiftwidth
-set sw=4
-" 行首一次性插入或删除sw所设置的空格数
-" smarttab
-set sta
-" 输入制表键时以空格代替
-" expandtab
-set et
-
-" 自动缩进
-" autoindent
-set ai
-
-" 智能缩进
-" 主要适用于c这样的程序,也可能适用于其他程序
-" 另外,对于c程序还有更好但也更严谨,配置更复杂的cindent
-" smartindent
-set si
-
-" 自动重新读入
-" 如果vim发现文件在其他地方被修改了,自动重新读入
-" autoread
-set ar
-
-" 自动写入(不包含"edit","quit"等命令,如需包含参见autowriteall)
-" 当在执行一些跳转,离开本缓冲区的命令时自动写入文件,如:
-" :next,:last,:stop,:suspend,CTRL-],CTRL-O,'{A-Z0-9}等
-" autowrite
-set aw
-
-" 命令行补全菜单
-" 在命令行按tab键补全命令时,在命令行上方出现可能的匹配
-" 使用tab键或CTRL-P/CTRL-N移动到合适的匹配上
-" 上键:文件名/菜单名补全中: 上移到父目录或父菜单
-" 下键:文件名/菜单名补全中: 移进子目录和子菜单
-" 回车键:菜单补全中，如果光标在句号之后: 移进子菜单
-" wildmenu
-set wmnu
-" 默认左键和右键也是选择匹配,修改按键令其移动光标
-cnoremap <Left> <Space><BS><Left>
-cnoremap <Right> <Space><BS><Right>
 
 " 以下设置一些超时时间(超过这个时间后才不在等待后续按键)
 " 这样可以避免状态栏提示信息的一点延迟
@@ -137,10 +44,6 @@ cnoremap <Right> <Space><BS><Right>
 set timeout
 " 设置映射超迟时间(默认是1000)
 set timeoutlen=3000
-" 开启键码超迟(默认是关闭):比如按ESC键退出插入,命令,可视模式的超时
-set ttimeout
-" 设置键码超时时间(默认是负数也就是关闭,关闭时由timeoutlen的值管理键码超时)
-set ttimeoutlen=100
 
 
 
