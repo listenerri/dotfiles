@@ -53,9 +53,9 @@ alias en='export LANG=en_US.UTF-8 && export LANGUAGE=en_US'
 alias zh='export LANG=zh_CN.UTF-8 && export LANGUAGE=zh_CN'
 alias ..='cd ..'
 
-alias dupdate='sudo apt update'
-alias dlistup='sudo apt list --upgradable'
-alias dfullupgrade='sudo apt full-upgrade'
+alias au='sudo apt update'
+alias al='sudo apt list --upgradable'
+alias af='sudo apt full-upgrade'
 
 alias gl='git log'
 alias glr='git log --graph'
