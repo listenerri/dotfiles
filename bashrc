@@ -67,6 +67,8 @@ alias gca='git commit --amend'
 alias gr='git review -r origin master'
 alias gpl='git pull'
 alias gps='git push'
+alias gb='git branch'
+alias gbd='git branch -D'
 
 # Set colors for man pages
 man() {
