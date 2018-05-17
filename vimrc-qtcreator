@@ -74,10 +74,12 @@ inoremap <C-J> <Down>
 inoremap <C-K> <Up>
 inoremap <C-L> <Right>
 
-" 快速移动到行尾航首
-" 直接使用map命令从而全局不适用H,L的原功能
+" 快速移动到行首行尾
+" 直接使用map命令从而全局不使用H,L的原功能
 map H ^
 map L $
+" 可视模式下移动到行尾(不包含换行符)
+vnoremap L $h
 
 " 保存和退出
 nnoremap <leader>w :w<CR>
