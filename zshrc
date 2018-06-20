@@ -118,6 +118,7 @@ alias gpl='git pull'
 alias gps='git push'
 alias gb='git branch'
 alias gbd='git branch -D'
+alias gch='git checkout'
 
 # Set colors for man pages
 man() {
