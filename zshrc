@@ -4,6 +4,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# to avoid warnning when other user use zsh
+ZSH_DISABLE_COMPFIX="true"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -133,4 +136,4 @@ man() {
 }
 
 export EDITOR=vim
-export PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
+export PROMPT='${ret_status} %{$fg[cyan]%}%n@%m %{$fg[green]%}%~%{$reset_color%} $(git_prompt_info)'
