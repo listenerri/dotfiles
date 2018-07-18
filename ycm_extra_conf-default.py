@@ -75,6 +75,8 @@ get_python_inc(),
 './tests/gmock/include',
 '-isystem',
 './benchmarks/benchmark/include',
+'-isystem',
+'/usr/include',
 # add for qt in deepin
 '-I',
 '/usr/include/x86_64-linux-gnu/qt5',
