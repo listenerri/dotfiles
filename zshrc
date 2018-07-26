@@ -123,6 +123,9 @@ alias gb='git branch'
 alias gbd='git branch -D'
 alias gch='git checkout'
 
+alias m='make'
+alias mj='make -j4'
+
 # Set colors for man pages
 man() {
   env \
