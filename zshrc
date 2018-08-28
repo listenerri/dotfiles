@@ -68,6 +68,7 @@ plugins=(
 )
 
 bindkey '^ ' autosuggest-accept
+bindkey \^U backward-kill-line
 
 source $ZSH/oh-my-zsh.sh
 
