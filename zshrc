@@ -64,10 +64,10 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     autojump
-    zsh-autosuggestions
+    #zsh-autosuggestions
 )
 
-bindkey '^ ' autosuggest-accept
+#bindkey '^ ' autosuggest-accept
 bindkey \^U backward-kill-line
 
 source $ZSH/oh-my-zsh.sh
