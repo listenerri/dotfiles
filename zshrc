@@ -133,6 +133,8 @@ alias gch='git checkout'
 alias m='make -j4'
 alias mk='make'
 
+alias dd='dd status=progress'
+
 # Set colors for man pages
 man() {
   env \
