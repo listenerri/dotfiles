@@ -134,3 +134,6 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
+
+" 从insert模式按esc回到normal模式时自动关闭小企鹅输入法
+inoremap <ESC> <ESC>:!dbus-send --type=method_call --dest=org.fcitx.Fcitx /inputmethod org.fcitx.Fcitx.InputMethod.InactivateIM<CR>
