@@ -129,6 +129,7 @@ alias gps='git push'
 alias gb='git branch'
 alias gbd='git branch -D'
 alias gch='git checkout'
+alias grm='git rebase master'
 
 alias m='make -j4'
 alias mk='make'
