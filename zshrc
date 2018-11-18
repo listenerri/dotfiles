@@ -1,9 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 #export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+export PATH=/home/ri/bin:/home/ri/.local/bin:/home/ri/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=/home/ri/.oh-my-zsh
 
 # to avoid warnning when other user use zsh
 ZSH_DISABLE_COMPFIX="true"
