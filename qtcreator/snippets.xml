@@ -14,8 +14,8 @@
 }</snippet>
     <snippet group="C++" trigger="lambda" id="" complement="[=](x y){}" removed="false" modified="false">[$=$]($type$ $name$) {$body$}</snippet>
     <snippet group="C++" trigger="lambda" id="" complement="[=]{}" removed="false" modified="false">[$=$] {$body$}</snippet>
-    <snippet group="C++" trigger="qde" id="" complement="qDebug &lt;&lt; &quot;&lt;&lt;&lt;&lt;&quot;" removed="false" modified="false">qDebug() &lt;&lt; &quot;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;$&lt;$&quot;;$$</snippet>
-    <snippet group="C++" trigger="qde" id="" complement="qDebug &lt;&lt; &quot;&lt;&lt;&lt;&lt;&quot; &lt;&lt; something" removed="false" modified="false">qDebug() &lt;&lt; &quot;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;$&lt;$&quot; &lt;&lt; $Something$;$$</snippet>
+    <snippet group="C++" trigger="qde" id="" complement="qDebug &lt;&lt; &quot;&lt;&lt;&lt;&lt;&quot;" removed="false" modified="false">qDebug() &lt;&lt; &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;$&gt;$&quot;;$$</snippet>
+    <snippet group="C++" trigger="qde" id="" complement="qDebug &lt;&lt; &quot;&lt;&lt;&lt;&lt;&quot; &lt;&lt; something" removed="false" modified="false">qDebug() &lt;&lt; &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;$&gt;$&quot; &lt;&lt; $Something$;$$</snippet>
     <snippet group="C++" trigger="qde" id="" complement="qDebug &lt;&lt; &quot;something&quot;" removed="false" modified="false">qDebug() &lt;&lt; &quot;$SomeThing$&quot;;$$</snippet>
     <snippet group="C++" trigger="static_cast" id="" complement="static_cast&lt;&gt;()" removed="false" modified="false">static_cast&lt;$type$&gt;($object$);</snippet>
     <snippet group="C++" trigger="struct" id="cpp_genericstruct" complement="" removed="false" modified="true">struct $name$
