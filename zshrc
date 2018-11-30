@@ -131,6 +131,7 @@ alias gbd='git branch -D'
 alias gch='git checkout'
 alias gcm='git checkout master'
 alias grm='git rebase master'
+alias gdm='git diff master'
 
 alias m='make -j4'
 alias mk='make'
