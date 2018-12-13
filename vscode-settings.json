@@ -2,6 +2,7 @@
     "workbench.colorTheme": "Default Light+",
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
+    "window.titleBarStyle": "custom",
 
 
 
