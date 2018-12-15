@@ -3,6 +3,7 @@
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
     "window.titleBarStyle": "custom",
+    "cmake.configureOnOpen": true,
 
 
 
@@ -70,4 +71,5 @@
         {"before" : ["/"], "after" : ["y", "/", "<C-r>", "\"", "<Cr>"]},
         {"before" : ["?"], "after" : ["y", "?", "<C-r>", "\"", "<Cr>"]},
     ],
+    // -----vim plugin settings END-----
 }
