@@ -4,6 +4,7 @@
     "editor.renderWhitespace": "all",
     "window.titleBarStyle": "custom",
     "cmake.configureOnOpen": true,
+    "explorer.confirmDelete": false,
 
 
 
