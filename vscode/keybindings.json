@@ -43,6 +43,7 @@
         "command": "workbench.action.closePanel",
         "when": "!panelFocus && activeViewlet == 'workbench.view.search'"
     },
+    // 禁用 cmake-tools 提供的快捷键, 其影响了 vscode 原有的功能
     {
         "key": "shift+f5",
         "command": "-cmake.launchTarget"
@@ -50,6 +51,18 @@
     {
         "key": "ctrl+f5",
         "command": "-cmake.debugTarget",
+        "when": "!inDebugMode"
+    },
+    // 设置 f5 为 start without debugging
+    // 设置 ctrl+f5 为 start debugging (交换默认快捷键功能)
+    {
+        "key": "f5",
+        "command": "workbench.action.debug.run",
+        "when": "!inDebugMode"
+    },
+    {
+        "key": "ctrl+f5",
+        "command": "workbench.action.debug.start",
         "when": "!inDebugMode"
     },
 ]
