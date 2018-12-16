@@ -1,7 +1,22 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
+    // 当焦点在侧栏时按 esc 回到编辑器
     {
         "key": "escape",
-        "command": "workbench.action.focusActiveEditorGroup"
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "sideBarFocus"
     },
+    // 当焦点在 Panel(Output/Terminal) 时按 esc 回到编辑器
+    {
+        "key": "escape",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "panelFocus"
+    },
+    // 当焦点不在 Panel 且 Panel 正在显示时按 esc 关闭 Panel
+    { "key": "escape", "command": "workbench.action.closePanel", "when": "!panelFocus && activePanel == 'workbench.panel.markers'" },
+    { "key": "escape", "command": "workbench.action.closePanel", "when": "!panelFocus && activePanel == 'workbench.panel.output'" },
+    { "key": "escape", "command": "workbench.action.closePanel", "when": "!panelFocus && activePanel == 'workbench.panel.repl'" },
+    { "key": "escape", "command": "workbench.action.closePanel", "when": "!panelFocus && activePanel == 'workbench.panel.terminal'" },
+    { "key": "escape", "command": "workbench.action.closePanel", "when": "!panelFocus && activePanel == 'workbench.panel.comments'" },
+    { "key": "escape", "command": "workbench.action.closePanel", "when": "!panelFocus && activeViewlet == 'workbench.view.search'" },
 ]
