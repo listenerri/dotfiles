@@ -43,4 +43,13 @@
         "command": "workbench.action.closePanel",
         "when": "!panelFocus && activeViewlet == 'workbench.view.search'"
     },
+    {
+        "key": "shift+f5",
+        "command": "-cmake.launchTarget"
+    },
+    {
+        "key": "ctrl+f5",
+        "command": "-cmake.debugTarget",
+        "when": "!inDebugMode"
+    },
 ]
