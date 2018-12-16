@@ -1,13 +1,18 @@
 {
+    // vscode settings
     "workbench.colorTheme": "Default Light+",
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
     "window.titleBarStyle": "custom",
-    "cmake.configureOnOpen": true,
     "explorer.confirmDelete": false,
 
+    // cmake-tools settings
+    "cmake.configureOnOpen": true,
 
-
+    // go settings
+    "[go]": {
+        "editor.formatOnSave": false
+    },
 
     // -----vim plugin settings-----
     // 重设 leader 键
