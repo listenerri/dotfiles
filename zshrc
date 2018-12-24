@@ -123,7 +123,6 @@ alias gd='git diff'
 alias ga='git add .'
 alias gc='git commit'
 alias gca='git commit --amend'
-alias gr='git review -r origin'
 alias gpl='git pull'
 alias gps='git push'
 alias gb='git branch'
@@ -132,6 +131,40 @@ alias gch='git checkout'
 alias gcm='git checkout master'
 alias grm='git rebase master'
 alias gdm='git diff master'
+
+#alias gr='git review -r origin'
+gr() {
+    branch_array=($(git branch | cut -b 3-))
+
+    index=1
+    for branch in "${branch_array[@]}"; do
+        if [[ $branch == master ]]; then
+            echo "[$index] $branch"
+        else
+            echo " $index  $branch"
+        fi
+        index=$(expr $index + 1)
+    done
+
+    echo -n "specify a branch to review: "
+    read selected_index
+
+    # default branch is master
+    if [[ -z $selected_index ]]; then
+        echo "review to branch master:"
+        git review -r origin master
+        return $?
+    fi
+
+    selected_branch=${branch_array[$selected_index]}
+    if [[ -n $selected_branch ]]; then
+        echo "review to branch $selected_branch: "
+        git review -r origin $selected_branch
+        return $?
+    else
+        echo "Error: specified branch can not find!";
+    fi
+}
 
 alias m='make -j4'
 alias mk='make'
