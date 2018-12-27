@@ -133,9 +133,10 @@ alias gcm='git checkout master'
 alias grm='git rebase master'
 alias gdm='git diff master'
 alias gsl='git stash list'
-alias gsp='git stash push'
-alias gsa='git stash apply'
+alias gsi='git stash push'
+alias gso='git stash pop'
 alias gsd='git stash drop'
+alias gss='git stash show -p'
 
 #alias gr='git review -r origin'
 gr() {
