@@ -176,7 +176,7 @@ grm() {
     flag=$(git branch | grep "\\* dev/")
     if [[ -n $flag ]]; then
         echo "Warning: rebase master in dev branch!"
-        echo "use complete command 'git rebase master' if you real want to do this!"
+        echo "use complete command 'git rebase master' if you really want to do this!"
     else
         git rebase master
     fi
