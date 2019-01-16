@@ -130,7 +130,6 @@ alias gbd='git branch -d'
 alias gbD='git branch -D'
 alias gch='git checkout'
 alias gcm='git checkout master'
-alias grm='git rebase master'
 alias gdm='git diff master'
 alias gsl='git stash list'
 alias gsi='git stash push'
@@ -169,6 +168,17 @@ gr() {
         return $?
     else
         echo "Error: specified branch can not find!";
+    fi
+}
+
+#alias grm='git rebase master'
+grm() {
+    flag=$(git branch | grep "\\* dev/")
+    if [[ -n $flag ]]; then
+        echo "Warning: rebase master in dev branch!"
+        echo "use complete command 'git rebase master' if you real want to do this!"
+    else
+        git rebase master
     fi
 }
 
