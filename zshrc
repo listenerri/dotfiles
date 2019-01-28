@@ -65,10 +65,17 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
     autojump
     zsh-autosuggestions
+    tmux
 )
 
+# for plugin zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
 bindkey \^U backward-kill-line
+
+# for plugin tmux
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART_ONCE=false
+export ZSH_TMUX_AUTOCONNECT=false
 
 source $ZSH/oh-my-zsh.sh
 
