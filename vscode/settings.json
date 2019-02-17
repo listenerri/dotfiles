@@ -2,9 +2,11 @@
     // vscode settings
     "workbench.colorTheme": "Default Light+",
     "files.autoSave": "afterDelay",
-    "editor.renderWhitespace": "all",
     "window.titleBarStyle": "custom",
     "explorer.confirmDelete": false,
+    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "'source code pro'",
+    "editor.fontSize": 13,
 
     // cmake-tools settings
     "cmake.configureOnOpen": true,
