@@ -6,7 +6,7 @@ case $- in
 esac
 
 # 启动 tmux
-[[ -z "$TMUX" ]] && exec tmux
+which tmux > /dev/null 2>&1 && [[ -z "$TMUX" ]] && exec tmux
 
 # 启动 autojump
 . /usr/share/autojump/autojump.sh
