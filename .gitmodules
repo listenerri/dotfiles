@@ -1,0 +1,3 @@
+[submodule "libs/complete-alias"]
+	path = libs/complete-alias
+	url = git@github.com:cykerway/complete-alias.git
