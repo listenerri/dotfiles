@@ -38,6 +38,10 @@ if ! shopt -oq posix; then
 fi
 
 # 设置提示符
+# 要想让 git 相关的提示正常需要安装并启动 bash-completion
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+#GIT_PS1_SHOWCOLORHINTS=1
 PS1='$(
     if [[ $? == 0 ]]; then
         echo "\[\e[1;32m\]:) ";
@@ -51,11 +55,9 @@ PS1='$(
         echo "\[\e[1;36m\]\u ";
     fi
     )$(
-    echo "\[\e[1;32m\]\w "
+    echo "\[\e[1;32m\]\w"
     )$(
-    if [[ -d .git ]]; then
-        echo "\[\e[1;33m\](`git status | head -n 1 | grep -o "\b\S*$"`) ";
-    fi
+    echo "\[\e[1;33m\]$(__git_ps1 " (%s)") "
     )$(
     if [[ ${EUID} == 0 ]]; then
         echo "\[\e[1;31m\]\$ ";
