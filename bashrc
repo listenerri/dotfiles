@@ -9,7 +9,13 @@ esac
 which tmux > /dev/null 2>&1 && [[ -z "$TMUX" ]] && exec tmux
 
 # 启动 autojump
-. /usr/share/autojump/autojump.sh
+if [ -s ~/.autojump/share/autojump/autojump.bash ]; then
+    source ~/.autojump/share/autojump/autojump.bash
+elif [ -s /usr/local/share/autojump/autojump.bash ]; then
+    source /usr/local/share/autojump/autojump.bash
+elif [ -s /usr/share/autojump/autojump.bash ]; then
+    source /usr/share/autojump/autojump.bash
+fi
 
 # 不把重复的行和空格开头的行加入历史记录
 HISTCONTROL=ignoreboth
