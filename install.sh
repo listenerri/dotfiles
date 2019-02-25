@@ -28,8 +28,9 @@ install_conky_dot_files() {
 
 install_gdb_dot_files() {
     echo "install for gdb..."
+    mkdir -p $HOME/.config/gdb
     ln -s -f $DotFilesDir/gdbinit $HOME/.gdbinit
-    ln -s -f $DotFilesDir/libs/qt5printers $HOME/.gdb
+    ln -s -f $DotFilesDir/libs/qt5printers $HOME/.config/gdb/qt5printers
 }
 
 install_git_dot_files() {
