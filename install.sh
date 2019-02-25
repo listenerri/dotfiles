@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IsOSX=$(uname -a | grep -i Darwin)
-DotFilesDir=$(dirname $(realpath $0))
+DotFilesDir=$(dirname $(readlink -e $0))
 echo "current dot files directory is: $DotFilesDir"
 
 echo "update submodules..."
