@@ -10,6 +10,7 @@ git submodule init
 git submodule update
 
 install_bash_dot_files() {
+    rm -rf $HOME/.bashrc $HOME/.bash_profile $HOME/.bash_logout $HOME/.bash_completion_alias
     echo "install for bash..."
     if [[ $IsOSX ]]; then
         ln -s -f $DotFilesDir/bashrc-osx $HOME/.bashrc
@@ -22,11 +23,13 @@ install_bash_dot_files() {
 }
 
 install_conky_dot_files() {
+    rm -rf $HOME/.conky.conf
     echo "install for conky..."
     ln -s -f $DotFilesDir/conky.conf $HOME/.conky.conf
 }
 
 install_gdb_dot_files() {
+    rm -rf $HOME/.gdbinit $HOME/.config/gdb/qt5printers
     echo "install for gdb..."
     mkdir -p $HOME/.config/gdb
     ln -s -f $DotFilesDir/gdbinit $HOME/.gdbinit
@@ -34,6 +37,7 @@ install_gdb_dot_files() {
 }
 
 install_git_dot_files() {
+    rm -rf $HOME/.config/git/config $HOME/.config/git/ignore
     echo "install for git..."
     mkdir -p $HOME/.config/git
     ln -s -f $DotFilesDir/git-config $HOME/.config/git/config
@@ -41,17 +45,20 @@ install_git_dot_files() {
 }
 
 install_qtcreator_dot_files() {
+    rm -rf $HOME/.config/QtProject/qtcreator/snippets/snippets.xml
     echo "install for qtcreator..."
     mkdir -p $HOME/.config/QtProject/qtcreator/snippets
     ln -s -f $DotFilesDir/qtcreator/snippets.xml $HOME/.config/QtProject/qtcreator/snippets/snippets.xml
 }
 
 install_tmux_dot_files() {
+    rm -rf $HOME/.tmux.conf
     echo "install for tmux..."
     ln -s -f $DotFilesDir/tmux.conf $HOME/.tmux.conf
 }
 
 install_vscode_dot_files() {
+    rm -rf $HOME/.config/Code/User/settings.json $HOME/.config/Code/User/keybindings.json
     echo "install for vscode..."
     mkdir -p $HOME/.config/Code/User
     ln -s -f $DotFilesDir/vscode/settings.json $HOME/.config/Code/User/settings.json
