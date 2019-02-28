@@ -195,6 +195,6 @@ unset _JAVA_OPTIONS
 
 # golang
 export GOROOT=/usr/lib/go
-export GOPATH=/home/ri/go
+export GOPATH=$HOME/go
 
-export PATH=$HOME/bin:$HOME/.local/bin:$HOME/shells:$PATH:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/shells:$GOPATH/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
