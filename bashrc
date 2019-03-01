@@ -180,6 +180,7 @@ man() {
 
 # 设置变量
 
+export MyDotFiles=$HOME/dotfiles
 export EDITOR=vim
 
 # java
@@ -190,7 +191,7 @@ export EDITOR=vim
 unset _JAVA_OPTIONS
 
 # android
-#export ANDROID_HOME=/home/ri/android-sdk-linux
+#export ANDROID_HOME=$HOME/android-sdk-linux
 #export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # golang
@@ -198,3 +199,8 @@ export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 
 export PATH=$HOME/bin:$HOME/.local/bin:$HOME/shells:$GOPATH/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+
+Cocos2d_x_env_setup="$MyDotFiles/cocos2d-x-env"
+if [[ -f "$Cocos2d_x_env_setup" ]]; then
+    . "$Cocos2d_x_env_setup"
+fi
