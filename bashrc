@@ -5,8 +5,12 @@ case $- in
       *) return;;
 esac
 
-# 启动 tmux
-which tmux > /dev/null 2>&1 && [[ -z "$TMUX" ]] && exec tmux
+# 如果变量 DISABLE_TMUX 为空则启动 tmux
+if [[ -z $DISABLE_TMUX ]]; then
+    which tmux > /dev/null 2>&1 && [[ -z "$TMUX" ]] && exec tmux
+else
+    echo "-> disabled tmux <-"
+fi
 
 # 启动 autojump
 if [ -s ~/.autojump/share/autojump/autojump.bash ]; then
