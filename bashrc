@@ -79,6 +79,8 @@ alias info='info --vi-keys'
 alias en='export LANG=en_US.UTF-8 && export LANGUAGE=en_US'
 alias zh='export LANG=zh_CN.UTF-8 && export LANGUAGE=zh_CN'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 alias au='sudo apt update'
 alias al='apt list'
