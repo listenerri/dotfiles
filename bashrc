@@ -164,6 +164,11 @@ alias mk='make'
 
 alias dd='dd status=progress'
 
+alias hr='history -r'
+alias hw='history -w'
+alias hi='history -r'
+alias ho='history -w'
+
 # 让所有 alias 支持 bash 补全
 . "$HOME"/.bash_completion_alias
 aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
