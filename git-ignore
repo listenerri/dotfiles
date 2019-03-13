@@ -6,3 +6,5 @@ Doxyfile
 
 __pycache__/
 *.pyc
+
+compile_commands.json
