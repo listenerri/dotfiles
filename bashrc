@@ -23,9 +23,10 @@ fi
 
 # 不把重复的行和空格开头的行加入历史记录
 HISTCONTROL=ignoreboth
-# 设置历史记录大小
-HISTSIZE=1000
-HISTFILESIZE=2000
+# 设置退出 shell 时，当前 shell 中的最后多少行命令被写入历史记录文件
+HISTSIZE=20000
+# 设置历史记录文件中可以存储多少行命令
+HISTFILESIZE=20000
 
 # 追加历史记录而不是覆盖
 shopt -s histappend
