@@ -42,6 +42,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# 补全时忽略大小写
+bind "set completion-ignore-case on"
+
 # 设置提示符
 # 要想让 git 相关的提示正常需要安装并启动 bash-completion
 GIT_PS1_SHOWDIRTYSTATE=1
