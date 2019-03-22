@@ -120,8 +120,23 @@ alias gss='git stash show -p'
 # 拉取上游仓库 origin 中 master 分支的更新
 # 推送到自己的仓库 ri 中 master 分支
 # 用于更新自己 fork 的仓库到上游版本
-# 此行为类似 follow，故而别名为 gf
-alias gf='git pull origin master && git push ri master'
+# 此行为类似 follow，故而命名为 gf
+#alias gf='git fetch origin && git checkout master && git merge FETCH_HEAD && git push ri master'
+gf() {
+    current_branch="$(git branch | grep "\\*" | cut -b 3-)"
+    echo "Current branch is: $current_branch"
+    echo "Fetch from the remote: origin"
+    git fetch origin
+    echo "Fetch done"
+    if [[ x"master" != x${current_branch} ]]; then
+        git checkout master || return $?
+    fi
+    git merge FETCH_HEAD || return $?
+    git push ri master || return $?
+    if [[ x"master" != x${current_branch} ]]; then
+        git checkout "${current_branch}" || return $?
+    fi
+}
 
 #alias gr='git review -r origin'
 gr() {
