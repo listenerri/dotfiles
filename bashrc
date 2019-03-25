@@ -228,8 +228,8 @@ export EDITOR=vim
 unset _JAVA_OPTIONS
 
 # android
-#export ANDROID_HOME=$HOME/android-sdk-linux
-#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export ANDROID_HOME=$HOME/android-sdk-linux
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # golang
 export GOROOT=/usr/lib/go
