@@ -57,13 +57,9 @@ PS1='$(
         echo "\[\e[1;31m\]:( ";
     fi
     )$(
-    if [[ ${EUID} == 0 ]]; then
-        echo "\[\e[1;31m\]\u ";
-    else
-        echo "\[\e[1;36m\]\u ";
-    fi
+        echo "\u@\H \D{(%c)}\n\r";
     )$(
-    echo "\[\e[1;32m\]\w"
+    echo "\[\e[1;36m\]\w"
     )$(
     echo "\[\e[1;33m\]$(__git_ps1 " (%s)") "
     )$(
