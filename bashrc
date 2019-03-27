@@ -117,6 +117,8 @@ alias gsi='git stash push'
 alias gso='git stash pop'
 alias gsd='git stash drop'
 alias gss='git stash show -p'
+alias gt='git tag'
+alias gta='git tag -a'
 # 拉取上游仓库 origin 中 master 分支的更新
 # 推送到自己的仓库 ri 中 master 分支
 # 用于更新自己 fork 的仓库到上游版本
