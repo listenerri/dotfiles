@@ -138,41 +138,46 @@ gf() {
     fi
 }
 
-#alias gr='git review -r origin'
-gr() {
-    branch_array=($(git branch | cut -b 3-))
+alias gr='git remote'
+alias grv='git remote -v'
+alias gra='git remote add'
 
-    index=1
-    for branch in "${branch_array[@]}"; do
-        if [[ $branch == master ]]; then
-            echo "[$index] $branch"
-        else
-            echo " $index  $branch"
-        fi
-        index=$(expr $index + 1)
-    done
-
-    echo -n "specify a branch to review: "
-    read selected_index
-
-    # default branch is master
-    if [[ -z $selected_index ]]; then
-        echo "review to branch master:"
-        git review -r origin master
-        return $?
-    fi
-
-    selected_branch=${branch_array[$selected_index]}
-    if [[ -n $selected_branch ]]; then
-        echo "review to branch $selected_branch: "
-        git review -r origin $selected_branch
-        return $?
-    else
-        echo "Error: specified branch can not find!";
-    fi
-}
+# git review function warpper
+#gr() {
+#    branch_array=($(git branch | cut -b 3-))
+#
+#    index=1
+#    for branch in "${branch_array[@]}"; do
+#        if [[ $branch == master ]]; then
+#            echo "[$index] $branch"
+#        else
+#            echo " $index  $branch"
+#        fi
+#        index=$(expr $index + 1)
+#    done
+#
+#    echo -n "specify a branch to review: "
+#    read selected_index
+#
+#    # default branch is master
+#    if [[ -z $selected_index ]]; then
+#        echo "review to branch master:"
+#        git review -r origin master
+#        return $?
+#    fi
+#
+#    selected_branch=${branch_array[$selected_index]}
+#    if [[ -n $selected_branch ]]; then
+#        echo "review to branch $selected_branch: "
+#        git review -r origin $selected_branch
+#        return $?
+#    else
+#        echo "Error: specified branch can not find!";
+#    fi
+#}
 
 #alias grm='git rebase master'
+# git rebase master function warpper
 grm() {
     flag=$(git branch | grep "\\* dev/")
     if [[ -n $flag ]]; then
