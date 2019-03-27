@@ -126,7 +126,7 @@ gf() {
     current_branch="$(git branch | grep "\\*" | cut -b 3-)"
     echo "Current branch is: $current_branch"
     echo "Fetch master from the remote: origin"
-    git fetch origin master:master --tags
+    git fetch origin master --tags
     echo "Fetch done"
     if [[ x"master" != x${current_branch} ]]; then
         git checkout master || return $?
