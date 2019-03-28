@@ -47,29 +47,22 @@ bind "set completion-ignore-case on"
 
 # 设置提示符
 # 要想让 git 相关的提示正常需要安装并启动 bash-completion
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
 #GIT_PS1_SHOWCOLORHINTS=1
 PS1='$(
-    if [[ $? == 0 ]]; then
-        echo "\[\e[1;32m\]:) ";
-    else
-        echo "\[\e[1;31m\]:( ";
-    fi
-    )$(
-        echo "\u@\H \D{(%c)}";
-        echo "\n"
-    )$(
-    echo "\[\e[1;36m\]\w"
-    )$(
-    echo "\[\e[1;33m\]$(__git_ps1 " (%s)") "
-    )$(
-    if [[ ${EUID} == 0 ]]; then
-        echo "\[\e[1;31m\]\$ ";
-    else
-        echo "\[\e[1;36m\]\$ ";
-    fi
-    )\[\e[0m\]'
+if [[ $? == 0 ]]; then
+    echo -n "\[\e[1;32m\]:)";
+else
+    echo -n "\[\e[1;31m\]:(";
+fi
+) \u@\H \D{(%c)}\n\[\e[1;36m\]\w\[\e[1;33m\]$(__git_ps1 " (%s)") $(
+if [[ ${EUID} == 0 ]]; then
+    echo -n "\[\e[1;31m\]";
+else
+    echo -n "\[\e[1;36m\]";
+fi
+)\$ \[\e[0m\]'
 
 # 设置别名
 alias grep='grep --color=auto'
