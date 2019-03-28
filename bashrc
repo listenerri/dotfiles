@@ -57,7 +57,8 @@ PS1='$(
         echo "\[\e[1;31m\]:( ";
     fi
     )$(
-        echo "\u@\H \D{(%c)}\n\r";
+        echo "\u@\H \D{(%c)}";
+        echo "\n"
     )$(
     echo "\[\e[1;36m\]\w"
     )$(
