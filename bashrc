@@ -232,7 +232,7 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 
-export PATH=$HOME/bin:$HOME/.local/bin:$HOME/shells:$GOPATH/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/scripts/shell:$GOPATH/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 Cocos2d_x_env_setup="$MyDotFiles/cocos2d-x-env"
 if [[ -f "$Cocos2d_x_env_setup" ]]; then
