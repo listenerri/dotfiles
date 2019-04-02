@@ -5,6 +5,7 @@ case $- in
       *) return;;
 esac
 
+#DISABLE_TMUX=1
 # 如果变量 DISABLE_TMUX 为空则启动 tmux
 if [[ -z $DISABLE_TMUX ]]; then
     which tmux > /dev/null 2>&1 && [[ -z "$TMUX" ]] && exec tmux
@@ -118,7 +119,7 @@ gf() {
     current_branch="$(git branch | grep "\\*" | cut -b 3-)"
     echo "Current branch is: $current_branch"
     echo "Fetch master from the remote: origin"
-    git fetch origin master --tags
+    git fetch --tags origin master
     echo "Fetch done"
     if [[ x"master" != x${current_branch} ]]; then
         git checkout master || return $?
