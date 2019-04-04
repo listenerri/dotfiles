@@ -33,6 +33,8 @@ HISTFILESIZE=20000
 shopt -s histappend
 # 执行每个命令后检查窗口大小并且在必要时更新行数和列数
 shopt -s checkwinsize
+# 当只输入目录并会车时执行对应的 cd 命令
+shopt -s autocd
 
 # 启用补全
 if ! shopt -oq posix; then
