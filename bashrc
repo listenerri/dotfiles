@@ -6,9 +6,11 @@ case $- in
 esac
 
 #DISABLE_TMUX=1
-# 如果变量 DISABLE_TMUX 为空则启动 tmux
+# 如果变量 DISABLE_TMUX 为空则连接已有的或者启动新的 tmux 会话
 if [[ -z $DISABLE_TMUX ]]; then
-    which tmux > /dev/null 2>&1 && [[ -z "$TMUX" ]] && exec tmux
+    which tmux > /dev/null 2>&1\
+        && [[ -z "$TMUX" ]]\
+        && { if ! tmux a; then exec tmux; fi; }
 else
     echo "-> disabled tmux <-"
 fi
