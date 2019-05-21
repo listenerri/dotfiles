@@ -8,8 +8,8 @@
     "window.zoomLevel": 0,
     "explorer.confirmDelete": false,
     "editor.renderWhitespace": "all",
-    "editor.fontFamily": "WenQuanYi Micro Hei Mono",
-    // "editor.fontFamily": "Source Code Pro",
+    // "editor.fontFamily": "WenQuanYi Micro Hei Mono",
+    "editor.fontFamily": "Source Code Pro",
     "editor.fontSize": 13,
 
     // cmake-tools settings
