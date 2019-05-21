@@ -10,7 +10,7 @@
     "editor.renderWhitespace": "all",
     // "editor.fontFamily": "WenQuanYi Micro Hei Mono",
     "editor.fontFamily": "Source Code Pro",
-    "editor.fontSize": 13,
+    "editor.fontSize": 14,
 
     // cmake-tools settings
     "cmake.configureOnOpen": true,
