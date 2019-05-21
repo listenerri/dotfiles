@@ -1,14 +1,16 @@
 {
     // vscode settings
     "workbench.colorTheme": "Default Light+",
-    "files.autoSave": "afterDelay",
-    "window.titleBarStyle": "custom",
-    "explorer.confirmDelete": false,
-    "editor.renderWhitespace": "all",
-    "editor.fontFamily": "'source code pro'",
-    "editor.fontSize": 13,
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
+    "files.autoSave": "afterDelay",
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": 0,
+    "explorer.confirmDelete": false,
+    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "WenQuanYi Micro Hei Mono",
+    // "editor.fontFamily": "Source Code Pro",
+    "editor.fontSize": 13,
 
     // cmake-tools settings
     "cmake.configureOnOpen": true,
