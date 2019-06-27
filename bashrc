@@ -71,7 +71,7 @@ fi
 
 # 设置别名
 alias grep='grep --color=auto'
-alias ll='ls -alF --color=auto'
+alias ll='ls -ahlF --color=auto'
 alias la='ls -AF --color=auto'
 alias ls='ls -F --color=auto'
 alias info='info --vi-keys'
