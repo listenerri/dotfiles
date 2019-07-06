@@ -5,9 +5,8 @@ case $- in
       *) return;;
 esac
 
-#ENABLE_TMUX=1
-# 如果变量 ENABLE_TMUX 不为空则连接已有的或者启动新的 tmux 会话
-if [[ -n $ENABLE_TMUX ]]; then
+# 如果变量 DISPLAY 不为空则连接已有的或者启动新的 tmux 会话
+if [[ -n $DISPLAY ]]; then
     which tmux > /dev/null 2>&1\
         && [[ -z "$TMUX" ]]\
         && { if ! tmux a; then exec tmux; fi; }
