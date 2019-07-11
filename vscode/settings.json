@@ -60,6 +60,8 @@
         {"before" : ["F"], "after" : ["<leader>", "<leader>", "F"]},
         {"before" : ["t"], "after" : ["<leader>", "<leader>", "t"]},
         {"before" : ["T"], "after" : ["<leader>", "<leader>", "T"]},
+        // 显示帮助文档(鼠标 hover 时显示的文档)
+        {"before" : ["<leader>", "o"], "commands" : ["editor.action.showHover"]},
     ],
     // 插入模式按键映射
     "vim.insertModeKeyBindingsNonRecursive": [
