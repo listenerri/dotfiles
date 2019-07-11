@@ -38,59 +38,59 @@
     // 正常模式按键映射
     "vim.normalModeKeyBindingsNonRecursive": [
         // 更方便的进入命令模式
-        {"before" : ["<leader>", ";"], "after" : [":"]},
+        {"before": ["<leader>", ";"], "after": [":"]},
         // 快速移动到行首行尾
-        {"before" : ["H"], "after" : ["^"]},
-        {"before" : ["L"], "after" : ["$"]},
+        {"before": ["H"], "after": ["^"]},
+        {"before": ["L"], "after": ["$"]},
         // 复制行到系统剪切板
-        {"before" : ["<leader>", "Y"], "after" : ["\"", "+", "y", "y"]},
+        {"before": ["<leader>", "Y"], "after": ["\"", "+", "y", "y"]},
         // 从系统剪切板粘贴
-        {"before" : ["<leader>", "p"], "after" : ["\"", "+", "p"]},
-        {"before" : ["<leader>", "P"], "after" : ["\"", "+", "P"]},
+        {"before": ["<leader>", "p"], "after": ["\"", "+", "p"]},
+        {"before": ["<leader>", "P"], "after": ["\"", "+", "P"]},
         // 保存
-        {"before" : ["<leader>", "w"], "commands" : [":w"]},
+        {"before": ["<leader>", "w"], "commands": [":w"]},
         // 关闭
-        {"before" : ["<leader>", "q"], "commands" : [":q"]},
+        {"before": ["<leader>", "q"], "commands": [":q"]},
         // 取消搜索的高亮
-        {"before" : ["<leader>", "<leader>"], "commands" : [":nohlsearch"]},
+        {"before": ["<leader>", "<leader>"], "commands": [":nohlsearch"]},
         // 窗口切换
-        {"before" : ["<C-h>"], "after" : ["<C-w>", "h"]},
-        {"before" : ["<C-j>"], "after" : ["<C-w>", "j"]},
-        {"before" : ["<C-k>"], "after" : ["<C-w>", "k"]},
-        {"before" : ["<C-l>"], "after" : ["<C-w>", "l"]},
+        {"before": ["<C-h>"], "after": ["<C-w>", "h"]},
+        {"before": ["<C-j>"], "after": ["<C-w>", "j"]},
+        {"before": ["<C-k>"], "after": ["<C-w>", "k"]},
+        {"before": ["<C-l>"], "after": ["<C-w>", "l"]},
         // EasyMotion 相关
-        {"before" : ["<leader>", "s"], "after" : ["<leader>", "<leader>", "s"]},
-        {"before" : ["f"], "after" : ["<leader>", "<leader>", "f"]},
-        {"before" : ["F"], "after" : ["<leader>", "<leader>", "F"]},
-        {"before" : ["t"], "after" : ["<leader>", "<leader>", "t"]},
-        {"before" : ["T"], "after" : ["<leader>", "<leader>", "T"]},
+        {"before": ["<leader>", "s"], "after": ["<leader>", "<leader>", "s"]},
+        {"before": ["f"], "after": ["<leader>", "<leader>", "f"]},
+        {"before": ["F"], "after": ["<leader>", "<leader>", "F"]},
+        {"before": ["t"], "after": ["<leader>", "<leader>", "t"]},
+        {"before": ["T"], "after": ["<leader>", "<leader>", "T"]},
         // 显示帮助文档(鼠标 hover 时显示的文档)
-        {"before" : ["<leader>", "o"], "commands" : ["editor.action.showHover"]},
+        {"before": ["<leader>", "o"], "commands": ["editor.action.showHover"]},
     ],
     // 插入模式按键映射
     "vim.insertModeKeyBindingsNonRecursive": [
         // 插入模式下快速移动光标
-        {"before" : ["<C-h>"], "after" : ["<Left>"]},
-        {"before" : ["<C-j>"], "after" : ["<Down>"]},
-        {"before" : ["<C-k>"], "after" : ["<Up>"]},
-        {"before" : ["<C-l>"], "after" : ["<Right>"]},
+        {"before": ["<C-h>"], "after": ["<Left>"]},
+        {"before": ["<C-j>"], "after": ["<Down>"]},
+        {"before": ["<C-k>"], "after": ["<Up>"]},
+        {"before": ["<C-l>"], "after": ["<Right>"]},
     ],
     // 可视模式按键映射
     "vim.visualModeKeyBindingsNonRecursive": [
         // 快速移动到行首行尾
-        {"before" : ["H"], "after" : ["^"]},
-        {"before" : ["L"], "after" : ["$", "h"]},
+        {"before": ["H"], "after": ["^"]},
+        {"before": ["L"], "after": ["$", "h"]},
         // 复制到系统剪切板
-        {"before" : ["<leader>", "y"], "after" : ["\"", "+", "y"]},
+        {"before": ["<leader>", "y"], "after": ["\"", "+", "y"]},
         // 剪切到系统剪切板
-        {"before" : ["<leader>", "d"], "after" : ["\"", "+", "d"]},
-        {"before" : ["<leader>", "x"], "after" : ["\"", "+", "x"]},
+        {"before": ["<leader>", "d"], "after": ["\"", "+", "d"]},
+        {"before": ["<leader>", "x"], "after": ["\"", "+", "x"]},
         // 从系统剪切板粘贴
-        {"before" : ["<leader>", "p"], "after" : ["\"", "+", "p"]},
-        {"before" : ["<leader>", "P"], "after" : ["\"", "+", "P"]},
+        {"before": ["<leader>", "p"], "after": ["\"", "+", "p"]},
+        {"before": ["<leader>", "P"], "after": ["\"", "+", "P"]},
         // 可视模式下搜索高亮的内容
-        {"before" : ["/"], "after" : ["y", "/", "<C-r>", "\"", "<Cr>"]},
-        {"before" : ["?"], "after" : ["y", "?", "<C-r>", "\"", "<Cr>"]},
+        {"before": ["/"], "after": ["y", "/", "<C-r>", "\"", "<Cr>"]},
+        {"before": ["?"], "after": ["y", "?", "<C-r>", "\"", "<Cr>"]},
     ],
     // -----vim plugin settings END-----
 }
