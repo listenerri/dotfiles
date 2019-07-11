@@ -12,6 +12,10 @@
     "editor.fontFamily": "Source Code Pro",
     "editor.fontSize": 14,
     "extensions.autoUpdate": false,
+    // NOTE: 在 deepin linux bash 下经过测试发现，不能使用 VSCODE_ 开头的名字作为变量，否则无效
+    "terminal.integrated.env.linux": {
+        "IS_VSCODE_INTEGRATED_TERMINAL": "1"
+    },
 
     // cmake-tools settings
     "cmake.configureOnOpen": true,
@@ -21,7 +25,7 @@
         "editor.formatOnSave": false
     },
 
-    // -----vim plugin settings-----
+    // -----vim plugin settings BEGIN-----
     // 重设 leader 键
     "vim.leader": "<space>",
     // 启用 EasyMotion 插件
