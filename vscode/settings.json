@@ -33,8 +33,8 @@
     // 搜索结果高亮
     "vim.hlsearch": true,
     "vim.visualstar": true,
-    // 设置重映射的按键生效的时间（多长时间后生效）
-    "vim.timeout": 200,
+    // 设置重映射的按键生效的时间（多长时间后失效）
+    "vim.timeout": 3000,
     // 正常模式按键映射
     "vim.normalModeKeyBindingsNonRecursive": [
         // 更方便的进入命令模式
