@@ -184,6 +184,10 @@ grm() {
     fi
 }
 
+alias sss='svn status'
+alias sad='svn add'
+alias scm='svn commit'
+
 alias m='make -j4'
 alias mk='make'
 
