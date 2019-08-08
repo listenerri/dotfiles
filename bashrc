@@ -185,6 +185,7 @@ grm() {
 }
 
 alias sss='svn status'
+alias sup='svn update'
 alias sad='svn add'
 alias scm='svn commit'
 
