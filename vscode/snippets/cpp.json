@@ -27,7 +27,6 @@
         "body": [
             "\/\/",
             "\/\/ Maintainer: listenerri <listenerri@gmail.com>",
-            "\/\/ Created on: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
             "\/\/"
         ],
         "description": "Maintainer listenerri"
