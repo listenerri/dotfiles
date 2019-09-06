@@ -31,4 +31,32 @@
         ],
         "description": "Maintainer listenerri"
     },
+    "todo_ri": {
+        "prefix": "todo",
+        "body": [
+            "\/\/ TODO(ri): $something",
+        ],
+        "description": "TODO ri"
+    },
+    "note_ri": {
+        "prefix": "note",
+        "body": [
+            "\/\/ NOTE(ri): $something",
+        ],
+        "description": "NOTE ri"
+    },
+    "fixme_ri": {
+        "prefix": "fixme",
+        "body": [
+            "\/\/ FIXME(ri): $something",
+        ],
+        "description": "FIXME ri"
+    },
+    "warning_ri": {
+        "prefix": "warn",
+        "body": [
+            "\/\/ WARN(ri): $something",
+        ],
+        "description": "WARN ri"
+    },
 }
