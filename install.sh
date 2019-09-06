@@ -58,11 +58,12 @@ install_tmux_dot_files() {
 }
 
 install_vscode_dot_files() {
-    rm -rf $HOME/.config/Code/User/settings.json $HOME/.config/Code/User/keybindings.json
+    rm -rf $HOME/.config/Code/User/settings.json $HOME/.config/Code/User/keybindings.json $HOME/.config/Code/User/snippets
     echo "install for vscode..."
     mkdir -p $HOME/.config/Code/User
     ln -s -f $DotFilesDir/vscode/settings.json $HOME/.config/Code/User/settings.json
     ln -s -f $DotFilesDir/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+    ln -s -f $DotFilesDir/vscode/snippets $HOME/.config/Code/User/snippets
 }
 
 install_bash_dot_files
