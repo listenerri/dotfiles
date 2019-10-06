@@ -1,7 +1,20 @@
 #!/bin/bash
 
 IsOSX=$(uname -a | grep -i Darwin)
-DotFilesDir=$(dirname $(readlink -e $0))
+
+if [[ $IsOSX ]]; then
+    if [[ -z $(which realpath) ]]; then
+        echo "require realpath command!"
+        exit -1
+    fi
+
+    if [[ -z $(shopt | grep autocd) ]]; then
+        echo "require install another version of bash using brew!"
+        exit -1
+    fi
+fi
+
+DotFilesDir=$(dirname $(realpath $0))
 echo "current dot files directory is: $DotFilesDir"
 
 echo "update submodules..."
