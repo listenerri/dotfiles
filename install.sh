@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 IsOSX=$(uname -a | grep -i Darwin)
 
@@ -71,12 +71,23 @@ install_tmux_dot_files() {
 }
 
 install_vscode_dot_files() {
-    rm -rf $HOME/.config/Code/User/settings.json $HOME/.config/Code/User/keybindings.json $HOME/.config/Code/User/snippets
+    if [[ $IsOSX ]]; then
+        rm -rf $HOME/Library/ApplicationSupport/Code/User/settings.json $HOME/Library/ApplicationSupport/Code/User/keybindings.json $HOME/Library/ApplicationSupport/Code/User/snippets
+    else
+        rm -rf $HOME/.config/Code/User/settings.json $HOME/.config/Code/User/keybindings.json $HOME/.config/Code/User/snippets
+    fi
     echo "install for vscode..."
-    mkdir -p $HOME/.config/Code/User
-    ln -s -f $DotFilesDir/vscode/settings.json $HOME/.config/Code/User/settings.json
-    ln -s -f $DotFilesDir/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
-    ln -s -f $DotFilesDir/vscode/snippets $HOME/.config/Code/User/snippets
+    if [[ $IsOSX ]]; then
+        mkdir -p $HOME/Library/ApplicationSupport/Code/User
+        ln -s -f $DotFilesDir/vscode/settings.json $HOME/Library/ApplicationSupport/Code/User/settings.json
+        ln -s -f $DotFilesDir/vscode/keybindings.json $HOME/Library/ApplicationSupport/Code/User/keybindings.json
+        ln -s -f $DotFilesDir/vscode/snippets $HOME/Library/ApplicationSupport/Code/User/snippets
+    else
+        mkdir -p $HOME/.config/Code/User
+        ln -s -f $DotFilesDir/vscode/settings.json $HOME/.config/Code/User/settings.json
+        ln -s -f $DotFilesDir/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+        ln -s -f $DotFilesDir/vscode/snippets $HOME/.config/Code/User/snippets
+    fi
 }
 
 install_bash_dot_files
