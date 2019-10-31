@@ -46,6 +46,7 @@ shopt -s checkwinsize
 shopt -s autocd
 
 # 启用补全
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # 补全时忽略大小写
