@@ -66,7 +66,7 @@ set si
 
 
 " 更方便的进入命令模式
-nnoremap <leader>; :
+nnoremap <Space>; :
 
 " 插入模式下快速移动光标
 inoremap <C-H> <Left>
@@ -82,44 +82,44 @@ map L $
 vnoremap L $h
 
 " 保存和退出
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <Space>w :w<CR>
+nnoremap <Space>q :q<CR>
 
 " 保证搜索结果高亮,避免下面取消高亮后在此搜索没有高亮
 nnoremap n :set hlsearch<CR>nzz
 nnoremap N :set hlsearch<CR>Nzz
 
 " 取消搜索的高亮
-nnoremap <leader><Space> :set nohlsearch<cr>
+nnoremap <Space><Space> :set nohlsearch<cr>
 
 " 复制到系统剪切板
 " 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
 " 不能正常完成这个map
-noremap <leader>y "+y"
+noremap <Space>y "+y"
 
 " 复制行到系统剪切板
 " 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
 " 不能正常完成这个map
-noremap <leader>Y "+yy"
+noremap <Space>Y "+yy"
 
 " 剪切到系统剪切板
 " 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
 " 不能正常完成这个map
-noremap <leader>d "+d"
+noremap <Space>d "+d"
 
 " 从系统剪切板粘贴
 " 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
 " 不能正常完成这个map
-noremap <leader>p "+p"
-noremap <leader>P "+P"
+noremap <Space>p "+p"
+noremap <Space>P "+P"
 
 " 快速搜索光标下的单词
 " 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
 " 不能正常完成这个map
 " 向下搜索
-nnoremap <leader>/ :set hlsearch<CR>viwy/<C-R>"<CR>"
+nnoremap <Space>/ :set hlsearch<CR>viwy/<C-R>"<CR>"
 " 向上搜索
-nnoremap <leader>? :set hlsearch<CR>viwy?<C-R>"<CR>"
+nnoremap <Space>? :set hlsearch<CR>viwy?<C-R>"<CR>"
 
 " 快速可视模式下搜索高亮的内容
 " 最后面的'"'是没有用的,但如果不加上它qtcreator的fakevim插件
