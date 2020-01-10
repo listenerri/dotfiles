@@ -14,7 +14,7 @@ export SHELL=/usr/local/bin/bash
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # 连接已有的或者启动新的 tmux 会话
-if [[ -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
+if [[ -n $DISPLAY && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
     which tmux > /dev/null 2>&1\
         && [[ -z "$TMUX" ]]\
         && { if ! tmux a; then exec tmux; fi; }
