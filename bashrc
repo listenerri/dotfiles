@@ -6,7 +6,7 @@ case $- in
 esac
 
 # 如果变量 DISPLAY 不为空则连接已有的或者启动新的 tmux 会话
-if [[ -n $DISPLAY && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
+if [[ -z $SSH_CONNECTION && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
     which tmux > /dev/null 2>&1\
         && [[ -z "$TMUX" ]]\
         && { if ! tmux a; then exec tmux; fi; }
