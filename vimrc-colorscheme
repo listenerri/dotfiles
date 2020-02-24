@@ -1,7 +1,8 @@
-colorscheme zellner
+"colorscheme zellner
+"hi CursorColumn ctermfg=NONE ctermbg=251 cterm=NONE guifg=NONE guibg=gray gui=NONE
+"hi CursorLine ctermfg=NONE ctermbg=251 cterm=NONE guifg=NONE guibg=gray gui=NONE
 
-hi CursorColumn ctermfg=NONE ctermbg=251 cterm=NONE guifg=NONE guibg=gray gui=NONE
-hi CursorLine ctermfg=NONE ctermbg=251 cterm=NONE guifg=NONE guibg=gray gui=NONE
+colorscheme molokai
 
 " 终端背景色透明
 "highlight Normal ctermbg=none
