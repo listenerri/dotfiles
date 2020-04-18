@@ -68,6 +68,7 @@ install_tmux_dot_files() {
     rm -rf $HOME/.tmux.conf
     echo "install for tmux..."
     ln -s -f $DotFilesDir/tmux.conf $HOME/.tmux.conf
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 install_bash_dot_files
