@@ -18,3 +18,6 @@ define hd
 dump memory /tmp/dump.bin $arg0 $arg0+$arg1
 shell hexdump -C /tmp/dump.bin
 end
+
+set history filename ~/.gdb_history
+set history save on
