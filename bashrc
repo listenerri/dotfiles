@@ -203,6 +203,10 @@ alias cmake='cmake -DCMAKE_INSTALL_PREFIX=/usr'
 
 alias o='xdg-open'
 
+alias ffsend-docker='docker run --name ffsend --rm -it -v `pwd`:/data/ timvisee/ffsend'
+alias ffsend-docker-upload='docker run --name ffsend --rm -it -v `pwd`:/data/ timvisee/ffsend upload'
+alias ffsend-docker-download='docker run --name ffsend --rm -it -v `pwd`:/data/ timvisee/ffsend download'
+
 # 让所有 alias 支持 bash 补全
 . "$HOME"/.bash_completion_alias
 aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
