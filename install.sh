@@ -23,13 +23,9 @@ git submodule init
 git submodule update
 
 install_bash_dot_files() {
-    rm -rf $HOME/.bashrc $HOME/.bash_profile $HOME/.bash_logout $HOME/.bash_completion_alias
+    rm -rf $HOME/.bashrc $HOME/.bash_profile $HOME/.bash_logout $HOME/.bash_completion_alias $HOME/.profile
     echo "install for bash..."
-    if [[ $IsOSX ]]; then
-        ln -s -f $DotFilesDir/bashrc-osx $HOME/.bashrc
-    else
-        ln -s -f $DotFilesDir/bashrc $HOME/.bashrc
-    fi
+    ln -s -f $DotFilesDir/bashrc $HOME/.bashrc
     ln -s -f $DotFilesDir/bash_profile $HOME/.bash_profile
     ln -s -f $DotFilesDir/bash_logout $HOME/.bash_logout
     ln -s -f $DotFilesDir/libs/complete-alias/bash_completion.sh $HOME/.bash_completion_alias

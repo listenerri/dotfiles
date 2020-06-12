@@ -5,7 +5,14 @@ case $- in
       *) return;;
 esac
 
-# 如果变量 DISPLAY 不为空则连接已有的或者启动新的 tmux 会话
+IsOSX=$(uname -a | grep -i Darwin)
+
+if [[ -n $IsOSX ]]; then
+    # 使用 brew 安装的 bash
+    export SHELL=/usr/local/bin/bash
+fi
+
+# 连接已有的或者启动新的 tmux 会话
 if [[ -z $SSH_CONNECTION && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
     which tmux > /dev/null 2>&1\
         && [[ -z "$TMUX" ]]\
@@ -15,8 +22,8 @@ else
 fi
 
 # 启动 autojump
-if [ -s ~/.autojump/share/autojump/autojump.bash ]; then
-    source ~/.autojump/share/autojump/autojump.bash
+if [ -s $HOME/.autojump/share/autojump/autojump.bash ]; then
+    source $HOME/.autojump/share/autojump/autojump.bash
 elif [ -s /usr/local/share/autojump/autojump.bash ]; then
     source /usr/local/share/autojump/autojump.bash
 elif [ -s /usr/share/autojump/autojump.bash ]; then
@@ -38,7 +45,10 @@ shopt -s checkwinsize
 shopt -s autocd
 
 # 启用补全
-if ! shopt -oq posix; then
+if [[ -n $IsOSX ]]; then
+    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
+elif ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
@@ -70,9 +80,15 @@ fi
 
 # 设置别名
 alias grep='grep --color=auto'
-alias ll='ls -ahlF --color=auto'
-alias la='ls -AF --color=auto'
-alias ls='ls -F --color=auto'
+if [[ -n $IsOSX ]]; then
+    alias ll='gls -ahlF --color=auto'
+    alias la='gls -AF --color=auto'
+    alias ls='gls -F --color=auto'
+else
+    alias ll='ls -ahlF --color=auto'
+    alias la='ls -AF --color=auto'
+    alias ls='ls -F --color=auto'
+fi
 alias info='info --vi-keys'
 alias en='export LANG=en_US.UTF-8 && export LANGUAGE=en_US'
 alias zh='export LANG=zh_CN.UTF-8 && export LANGUAGE=zh_CN'
@@ -80,16 +96,18 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias au='sudo apt update'
-alias al='apt list'
-alias as='apt show'
-alias ap='apt policy'
-alias alu='sudo apt list --upgradable'
-alias af='sudo apt full-upgrade'
-alias ai='sudo apt install'
-alias ar='sudo apt remove --purge'
-alias aar='sudo apt autoremove --purge'
-alias aac='sudo apt autoclean'
+if [[ -z $IsOSX ]]; then
+    alias au='sudo apt update'
+    alias al='apt list'
+    alias as='apt show'
+    alias ap='apt policy'
+    alias alu='sudo apt list --upgradable'
+    alias af='sudo apt full-upgrade'
+    alias ai='sudo apt install'
+    alias ar='sudo apt remove --purge'
+    alias aar='sudo apt autoremove --purge'
+    alias aac='sudo apt autoclean'
+fi
 
 alias gl='git log'
 alias glr='git log --graph'
@@ -113,32 +131,32 @@ alias gsd='git stash drop'
 alias gss='git stash show -p'
 alias gt='git tag'
 alias gta='git tag -a'
+
 # 拉取上游仓库 origin 中 master 分支的更新
 # 推送到自己的仓库 ri 中 master 分支
 # 用于更新自己 fork 的仓库到上游版本
 # 此行为类似 follow，故而命名为 gf
-#alias gf='git fetch origin && git checkout master && git merge FETCH_HEAD && git push ri master'
-gf() {
-    current_branch="$(git branch | grep "\\*" | cut -b 3-)"
-    echo "Current branch is: $current_branch"
-    echo "Fetch master from the remote: origin"
-    git fetch --tags origin master
-    echo "Fetch done"
-    if [[ x"master" != x${current_branch} ]]; then
-        git checkout master || return $?
-    fi
-    git merge FETCH_HEAD || return $?
-    git push ri master || return $?
-    if [[ x"master" != x${current_branch} ]]; then
-        git checkout "${current_branch}" || return $?
-    fi
-}
+#gf() {
+#    current_branch="$(git branch | grep "\\*" | cut -b 3-)"
+#    echo "Current branch is: $current_branch"
+#    echo "Fetch master from the remote: origin"
+#    git fetch --tags origin master
+#    echo "Fetch done"
+#    if [[ x"master" != x${current_branch} ]]; then
+#        git checkout master || return $?
+#    fi
+#    git merge FETCH_HEAD || return $?
+#    git push ri master || return $?
+#    if [[ x"master" != x${current_branch} ]]; then
+#        git checkout "${current_branch}" || return $?
+#    fi
+#}
 
 alias gr='git remote'
 alias grv='git remote -v'
 alias gra='git remote add'
 
-# git review function warpper
+# Gerrit git review function
 #gr() {
 #    branch_array=($(git branch | cut -b 3-))
 #
@@ -172,17 +190,17 @@ alias gra='git remote add'
 #    fi
 #}
 
-#alias grm='git rebase master'
-# git rebase master function warpper
-grm() {
-    flag=$(git branch | grep "\\* dev/")
-    if [[ -n $flag ]]; then
-        echo "Warning: rebase master in dev branch!"
-        echo "use complete command 'git rebase master' if you really want to do this!"
-    else
-        git rebase master
-    fi
-}
+alias grm='git rebase master'
+# git rebase master function
+#grm() {
+#    flag=$(git branch | grep "\\* dev/")
+#    if [[ -n $flag ]]; then
+#        echo "Warning: rebase master in dev branch!"
+#        echo "use complete command 'git rebase master' if you really want to do this!"
+#    else
+#        git rebase master
+#    fi
+#}
 
 alias sss='svn status'
 alias sup='svn update'
@@ -201,7 +219,9 @@ alias ho='history -w'
 
 alias cmake='cmake -DCMAKE_INSTALL_PREFIX=/usr'
 
-alias o='xdg-open'
+if [[ -z $IsOSX ]]; then
+    alias o='xdg-open'
+fi
 
 alias ffsend-docker='docker run --name ffsend --rm -it -v `pwd`:/data/ timvisee/ffsend'
 alias ffsend-docker-upload='docker run --name ffsend --rm -it -v `pwd`:/data/ timvisee/ffsend upload'
@@ -228,32 +248,39 @@ man() {
 }
 
 # 设置变量
+export PATH=$HOME/bin:$HOME/scripts/shell:$HOME/.local/bin:/usr/local/sbin:$PATH
 
-export PATH=$HOME/bin:$HOME/.local/bin:$HOME/scripts/shell:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+if [[ $IsOSX ]]; then
+    export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+    # 禁止 brew 自动更新仓库
+    export HOMEBREW_NO_AUTO_UPDATE=1
+fi
 
-export MyDotFiles=$HOME/dotfiles
 export EDITOR=vim
 
 # java
 #export JAVA_HOME=/usr/lib/jvm/default
 #export JRE_HOME=$JAVA_HOME/jre
 #export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-#export PATH=$PATH:$JAVA_HOME/bin
+#export PATH=$JAVA_HOME/bin:$PATH
 unset _JAVA_OPTIONS
 
 # android
-export ANDROID_HOME=$HOME/android-sdk-linux
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+#export ANDROID_HOME=$HOME/android-sdk-linux
+#export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 # golang
-export GOROOT=/usr/lib/go
+if [[ $IsOSX ]]; then
+    export GOROOT=/usr/local/opt/go/libexec
+else
+    export GOROOT=/usr/lib/go
+fi
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
 
 # node
-export PATH=$PATH:/opt/node/bin
+export PATH=/opt/node/bin:$PATH
 
-Cocos2d_x_env_setup="$MyDotFiles/cocos2d-x-env"
-if [[ -f "$Cocos2d_x_env_setup" ]]; then
-    . "$Cocos2d_x_env_setup"
+if [[ -f "$HOME/.cocos2d-x-env" ]]; then
+    source "$HOME/.cocos2d-x-env"
 fi
