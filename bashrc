@@ -273,10 +273,10 @@ unset _JAVA_OPTIONS
 if [[ $IsOSX ]]; then
     export GOROOT=/usr/local/opt/go/libexec
 else
-    export GOROOT=/usr/lib/go
+    export GOROOT=/opt/go
 fi
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 # node
 export PATH=/opt/node/bin:$PATH
