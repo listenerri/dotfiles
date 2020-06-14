@@ -232,7 +232,11 @@ alias http-proxy-unset='unset http_proxy https_proxy'
 
 # 让所有 alias 支持 bash 补全
 . "$HOME"/.bash_completion_alias
-aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
+if [[ -n $IsOSX ]]; then
+    aliasArray=($(alias | gsed -e '{s/alias //;s/=.*//}'))
+else
+    aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
+fi
 for ali in "${aliasArray[@]}"; do
     complete -F _complete_alias "$ali"
 done
