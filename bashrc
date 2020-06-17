@@ -7,7 +7,11 @@ esac
 
 IsOSX=$(uname -a | grep -i Darwin)
 
+export PATH=$HOME/bin:$HOME/scripts/shell:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH
+
 if [[ -n $IsOSX ]]; then
+    # 禁止 brew 自动更新仓库
+    export HOMEBREW_NO_AUTO_UPDATE=1
     # 使用 brew 安装的 bash
     export SHELL=/usr/local/bin/bash
 fi
@@ -233,7 +237,7 @@ alias http-proxy-unset='unset http_proxy https_proxy'
 # 让所有 alias 支持 bash 补全
 . "$HOME"/.bash_completion_alias
 if [[ -n $IsOSX ]]; then
-    aliasArray=($(alias | gsed -e '{s/alias //;s/=.*//}'))
+    aliasArray=($(alias | /usr/local/opt/gnu-sed/libexec/gnubin/sed -e '{s/alias //;s/=.*//}'))
 else
     aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
 fi
@@ -254,15 +258,7 @@ man() {
   man "$@"
 }
 
-# 设置变量
-export PATH=$HOME/bin:$HOME/scripts/shell:$HOME/.local/bin:/usr/local/sbin:$PATH
-
-if [[ $IsOSX ]]; then
-    export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
-    # 禁止 brew 自动更新仓库
-    export HOMEBREW_NO_AUTO_UPDATE=1
-fi
-
+# 设置其他环境变量
 export EDITOR=vim
 
 # java
