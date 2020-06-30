@@ -67,6 +67,11 @@ bind "set completion-ignore-case on"
 # 要想让 git 相关的提示正常需要安装并启动 bash-completion
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
+if [ -n "$(lsb_release -d | grep Manjaro)" ]; then
+    if [ -s /usr/share/git/completion/git-prompt.sh ]; then
+        source /usr/share/git/completion/git-prompt.sh
+    fi
+fi
 #GIT_PS1_SHOWCOLORHINTS=1
 PS1='$(
 if [[ $? == 0 ]]; then
