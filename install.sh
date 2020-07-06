@@ -22,6 +22,11 @@ cd $DotFilesDir
 git submodule init
 git submodule update
 
+install_pam_env_dot_files() {
+    echo "install for pam environment..."
+    ln -s -f $DotFilesDir/pam_environment $HOME/.pam_environment
+}
+
 install_bash_dot_files() {
     rm -rf $HOME/.bashrc $HOME/.bash_profile $HOME/.bash_logout $HOME/.bash_completion_alias $HOME/.profile
     echo "install for bash..."
@@ -67,6 +72,7 @@ install_tmux_dot_files() {
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
+install_pam_env_dot_files
 install_bash_dot_files
 install_conky_dot_files
 install_gdb_dot_files
