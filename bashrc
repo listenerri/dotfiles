@@ -239,6 +239,8 @@ alias ffsend-docker-download='docker run --name ffsend --rm -it -v `pwd`:/data/ 
 alias http-proxy-set='export http_proxy=127.0.0.1:1081 https_proxy=127.0.0.1:1081; echo "http(s) proxy has been set to 127.0.0.1:1081"'
 alias http-proxy-unset='unset http_proxy https_proxy'
 
+alias man-en='LANG=en_US.UTF-8 man'
+
 # 让所有 alias 支持 bash 补全
 . "$HOME"/.bash_completion_alias
 if [[ -n $IsOSX ]]; then
