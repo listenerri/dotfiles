@@ -31,7 +31,7 @@ set siso=4
 " number
 set nu
 " relativenumber
-set rnu
+"set rnu
 
 " 高亮搜索时匹配到的搜过结果
 " hlsearch
