@@ -18,8 +18,8 @@ fi
 
 # 连接已有的或者启动新的 tmux 会话
 if [[ -z $SSH_CONNECTION && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
-    which tmux > /dev/null 2>&1\
-        && [[ -z "$TMUX" ]]\
+    which tmux > /dev/null 2>&1 \
+        && [[ -z "$TMUX" ]] \
         && { if ! tmux a; then exec tmux; fi; }
 else
     echo "-> disabled tmux <-"
@@ -254,15 +254,23 @@ done
 
 # 设置有颜色的 man 手册
 man() {
-  env \
-  LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-  LESS_TERMCAP_md=$(printf "\e[1;31m") \
-  LESS_TERMCAP_me=$(printf "\e[0m") \
-  LESS_TERMCAP_se=$(printf "\e[0m") \
-  LESS_TERMCAP_so=$(printf "\e[1;41;33m") \
-  LESS_TERMCAP_ue=$(printf "\e[0m") \
-  LESS_TERMCAP_us=$(printf "\e[1;32m") \
-  man "$@"
+    env \
+    LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_md="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_me="$(printf "\e[0m")" \
+    LESS_TERMCAP_se="$(printf "\e[0m")" \
+    LESS_TERMCAP_so="$(printf "\e[1;41;33m")" \
+    LESS_TERMCAP_ue="$(printf "\e[0m")" \
+    LESS_TERMCAP_us="$(printf "\e[1;32m")" \
+    man "$@"
+}
+
+man-table-of-contents() {
+    if [[ -z $1 ]]; then
+        echo "which man-page do you want to get table of contents?"
+        return 255
+    fi
+    env LANG=en_US.UTF-8 man "$1" | grep -P "^[A-Z]|^   [A-Z]"
 }
 
 # 设置其他环境变量
