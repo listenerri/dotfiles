@@ -140,6 +140,7 @@ alias gsd='git stash drop'
 alias gss='git stash show -p'
 alias gt='git tag'
 alias gta='git tag -a'
+alias gcp='git cherry-pick'
 
 # 拉取上游仓库 origin 中 master 分支的更新
 # 推送到自己的仓库 ri 中 master 分支
