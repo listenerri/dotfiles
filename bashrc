@@ -93,10 +93,12 @@ if [[ -n $IsOSX ]]; then
     alias ll='gls -ahlF --color=auto'
     alias la='gls -AF --color=auto'
     alias ls='gls -F --color=auto'
+    alias l='ls'
 else
     alias ll='ls -ahlF --color=auto'
     alias la='ls -AF --color=auto'
     alias ls='ls -F --color=auto'
+    alias l='ls'
 fi
 alias info='info --vi-keys'
 alias en='export LANG=en_US.UTF-8 && export LANGUAGE=en_US'
