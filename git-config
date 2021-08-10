@@ -1,3 +1,5 @@
+[core]
+    quotepath = false
 [user]
 	email = listenerri@gmail.com
 	name = listenerri
