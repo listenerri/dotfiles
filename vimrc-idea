@@ -81,11 +81,10 @@ map L $
 vnoremap L $h
 
 " 复制到系统剪切板
-vnoremap <Space>y "+y
+noremap <Space>y "+y
 
 " 复制行到系统剪切板
-nnoremap <Space>Y "+yy
-nnoremap <Space>yy "+yy
+noremap <Space>Y "+yy
 
 " 剪切到系统剪切板
 noremap <Space>d "+d

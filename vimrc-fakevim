@@ -66,11 +66,10 @@ map L $
 vnoremap L $h
 
 " 复制到系统剪切板
-vnoremap <Space>y "+y  " Fakevim 会删除最后一个双引号开始到行末尾，这里加上注释避免命令部分被删掉
+noremap <Space>y "+y  " Fakevim 会删除最后一个双引号开始到行末尾，这里加上注释避免命令部分被删掉
 
 " 复制行到系统剪切板
-nnoremap <Space>Y "+yy  " Fakevim 会删除最后一个双引号开始到行末尾，这里加上注释避免命令部分被删掉
-nnoremap <Space>yy "+yy  " Fakevim 会删除最后一个双引号开始到行末尾，这里加上注释避免命令部分被删掉
+noremap <Space>Y "+yy  " Fakevim 会删除最后一个双引号开始到行末尾，这里加上注释避免命令部分被删掉
 
 " 剪切到系统剪切板
 noremap <Space>d "+d  " Fakevim 会删除最后一个双引号开始到行末尾，这里加上注释避免命令部分被删掉
