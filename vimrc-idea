@@ -85,6 +85,7 @@ noremap <Space>y "+y
 
 " 复制行到系统剪切板
 noremap <Space>Y "+yy
+noremap <Space>yy "+yy
 
 " 剪切到系统剪切板
 noremap <Space>d "+d
