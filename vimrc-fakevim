@@ -48,6 +48,16 @@ set hls
 " 更方便的进入命令模式
 nnoremap <Space>; :
 
+" 小企鹅输入法
+" 需要将可执行脚本文件放到标准可执行目录下，如：/usr/local/bin/
+inoremap <ESC> <ESC>:!fakevim-fcitx.sh<CR>
+nnoremap i :!fakevim-fcitx.sh restore<CR>i
+nnoremap I :!fakevim-fcitx.sh restore<CR>I
+nnoremap a :!fakevim-fcitx.sh restore<CR>a
+nnoremap A :!fakevim-fcitx.sh restore<CR>A
+nnoremap s :!fakevim-fcitx.sh restore<CR>s
+nnoremap S :!fakevim-fcitx.sh restore<CR>S
+
 " 插入模式下快速移动光标
 inoremap <C-H> <Left>
 inoremap <C-J> <Down>
