@@ -232,8 +232,6 @@ alias hw='history -w'
 alias hi='history -r'
 alias ho='history -w'
 
-alias cmake='cmake -DCMAKE_INSTALL_PREFIX=/usr'
-
 if [[ -z $IsOSX ]]; then
     alias o='xdg-open'
 fi
