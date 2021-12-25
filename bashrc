@@ -237,6 +237,7 @@ if [[ -z $IsOSX ]]; then
 fi
 
 alias http-proxy-set='export http_proxy=http://127.0.0.1:1081 https_proxy=http://127.0.0.1:1081; echo "http(s) proxy has been set to http://127.0.0.1:1081"'
+alias http-proxy-set-wsl="export http_proxy=http://$WSLHOST:1080 https_proxy=http://$WSLHOST:1080; echo \"http(s) proxy has been set to http://$WSLHOST:1080\""
 alias http-proxy-unset='unset http_proxy https_proxy'
 
 alias man-en='LANG=en_US.UTF-8 man'
