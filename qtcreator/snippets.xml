@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <snippets>
     <snippet group="C++" trigger="bug" id="" complement="BUG(ri): " removed="false" modified="false">// BUG(ri): </snippet>
+    <snippet group="C++" trigger="cout" id="" complement="std::cout &lt;&lt; ..." removed="false" modified="false">std::cout &lt;&lt; $var$ &lt;&lt; std::endl$$;</snippet>
+    <snippet group="C++" trigger="do" id="cpp_do" complement="" removed="false" modified="true">do {
+    $$
+} while ($condition$);</snippet>
     <snippet group="C++" trigger="fixme" id="" complement="FIXME(ri): " removed="false" modified="false">// FIXME(ri): </snippet>
     <snippet group="C++" trigger="for" id="cpp_for" complement="" removed="false" modified="true">for (int $var$ = 0; $var$ &lt; $total$; ++$var$) {
     $$
