@@ -23,7 +23,7 @@ fi
 if [[ -z $SSH_CONNECTION && -z $VSCODE_PID && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
     which tmux > /dev/null 2>&1 \
         && [[ -z "$TMUX" ]] \
-        && { if ! tmux a; then exec tmux; fi; }
+        && { if tmux ls > /dev/null 2>&1; then exec tmux a; else exec tmux; fi; }
 else
     echo "-> disabled tmux <-"
 fi
@@ -244,15 +244,17 @@ alias http-proxy-unset='unset http_proxy https_proxy'
 alias man-en='LANG=en_US.UTF-8 man'
 
 # 让所有 alias 支持 bash 补全
-. "$HOME"/.bash_completion_alias
-if [[ -n $IsOSX ]]; then
-    aliasArray=($(alias | /usr/local/opt/gnu-sed/libexec/gnubin/sed -e '{s/alias //;s/=.*//}'))
-else
-    aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
+if [[ -f "$HOME/.bash_completion_alias" ]]; then
+    source "$HOME"/.bash_completion_alias
+    if [[ -n $IsOSX ]]; then
+        aliasArray=($(alias | /usr/local/opt/gnu-sed/libexec/gnubin/sed -e '{s/alias //;s/=.*//}'))
+    else
+        aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
+    fi
+    for ali in "${aliasArray[@]}"; do
+        complete -F _complete_alias "$ali"
+    done
 fi
-for ali in "${aliasArray[@]}"; do
-    complete -F _complete_alias "$ali"
-done
 
 # 设置有颜色的 man 手册
 man() {
