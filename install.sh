@@ -72,6 +72,13 @@ install_tmux_dot_files() {
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
+install_nautilus_scripts() {
+    echo "install for nautilus scripts..."
+    nautilus_scripts_dir=$HOME/.local/share/nautilus/scripts/
+    mkdir -p $nautilus_scripts_dir
+    ln -s -f $DotFilesDir/nautilus/* $nautilus_scripts_dir
+}
+
 install_pam_env_dot_files
 install_bash_dot_files
 install_conky_dot_files
@@ -79,3 +86,4 @@ install_gdb_dot_files
 install_git_dot_files
 install_qtcreator_dot_files
 install_tmux_dot_files
+install_nautilus_scripts
