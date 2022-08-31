@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=zip
+Exec=/usr/share/deepin/dde-file-manager/oem-menuextensions/create-zip.sh %U
+Icon=application-x-zip

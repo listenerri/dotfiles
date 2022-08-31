@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=tar.gz
+Exec=/usr/share/deepin/dde-file-manager/oem-menuextensions/create-tar-gz.sh %U
+Icon=application-x-tarz
