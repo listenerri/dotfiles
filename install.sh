@@ -79,11 +79,99 @@ install_nautilus_scripts() {
     ln -s -f $DotFilesDir/nautilus/* $nautilus_scripts_dir
 }
 
-install_pam_env_dot_files
-install_bash_dot_files
-install_conky_dot_files
-install_gdb_dot_files
-install_git_dot_files
-install_qtcreator_dot_files
-install_tmux_dot_files
-install_nautilus_scripts
+echo -n "install_pam_env_dot_files: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_pam_env_dot_files
+    else
+	echo "not install it"
+    fi
+else
+    install_pam_env_dot_files
+fi
+
+echo -n "install_bash_dot_files: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_bash_dot_files
+    else
+	echo "not install it"
+    fi
+else
+    install_bash_dot_files
+fi
+
+echo -n "install_conky_dot_files: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_conky_dot_files
+    else
+	echo "not install it"
+    fi
+else
+    install_conky_dot_files
+fi
+
+echo -n "install_gdb_dot_files: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_gdb_dot_files
+    else
+	echo "not install it"
+    fi
+else
+    install_gdb_dot_files
+fi
+
+echo -n "install_git_dot_files: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_git_dot_files
+    else
+	echo "not install it"
+    fi
+else
+    install_git_dot_files
+fi
+
+echo -n "install_qtcreator_dot_files: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_qtcreator_dot_files
+    else
+	echo "not install it"
+    fi
+else
+    install_qtcreator_dot_files
+fi
+
+echo -n "install_tmux_dot_files: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_tmux_dot_files
+    else
+	echo "not install it"
+    fi
+else
+    install_tmux_dot_files
+fi
+
+echo -n "install_nautilus_scripts: [Y/n]"
+read isOK
+if [[ -n "${isOK}" ]]; then
+    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
+        install_nautilus_scripts
+    else
+	echo "not install it"
+    fi
+else
+    install_nautilus_scripts
+fi
+
