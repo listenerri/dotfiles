@@ -48,6 +48,10 @@ set timeoutlen=3000
 
 
 
+" ##########################插件设置##########################
+
+
+
 
 " ##########################按键映射设置##########################
 " map:全局的映射,映射之后的按键可以递归(被再次映射)
@@ -101,6 +105,8 @@ nnoremap <Space>w :w<CR>
 " 保证搜索结果高亮,避免下面取消高亮后在此搜索没有高亮
 nnoremap n :set hlsearch<CR>nzz
 nnoremap N :set hlsearch<CR>Nzz
+nnoremap * :set hlsearch<CR>*
+nnoremap # :set hlsearch<CR>#
 
 " 取消搜索的高亮
 nnoremap <Space><Space> :set nohlsearch<cr>
@@ -126,9 +132,3 @@ nnoremap <C-L> <C-W>l
 
 
 
-
-" ##########################按键映射IDEA##########################
-nnoremap <Space>gg :action GotoDeclaration<CR>
-nnoremap <Space>ln :action GotoNextError<CR>
-nnoremap <Space>lp :action GotoPreviousError<CR>
-nnoremap <Space>f :action GotoFile<CR>
