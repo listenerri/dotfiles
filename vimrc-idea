@@ -49,7 +49,10 @@ set timeoutlen=3000
 
 
 " ##########################插件设置##########################
-
+" IdeaVimExtention
+" 自动在 Normal 和 Insert 模式下切换中英输入法
+" set keep-english-in-normal[-and-restore-in-insert]
+set keep-english-in-normal-and-restore-in-insert
 
 
 
