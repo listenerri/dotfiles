@@ -52,6 +52,9 @@ set timeoutlen=3000
 " IdeaVimExtention
 " 自动在 Normal 和 Insert 模式下切换中英输入法
 " set keep-english-in-normal[-and-restore-in-insert]
+" 根据上下文文本自动猜测进入 Insert 模式时使用的输入法状态
+" let context_aware=1
+let context_aware=0
 set keep-english-in-normal-and-restore-in-insert
 
 
