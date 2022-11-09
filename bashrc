@@ -16,34 +16,6 @@ if [[ -n $IsOSX ]]; then
     export SHELL=/usr/local/bin/bash
 fi
 
-# 在**不是**以下情况的时候，连接已有的或者启动新的 tmux 会话
-# - 在 vscode 启动初始化时
-# - 在 vscode 内置 terminal 中
-if [[ -z $VSCODE_PID && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
-    if which tmux > /dev/null 2>&1; then
-        if [[ -z "$TMUX" ]]; then
-            # 如果有正在运行的 tmux 会话
-            if tmux ls > /dev/null 2>&1; then
-                # 尝试获取没有被 attached 的 sessions 信息
-                non_attached_sessions=$(tmux ls | sed -e '{/(attached)$/d}')
-                # 未找到非 attached 状态的 session 则启动新的 tmux
-                if [[ -z "$non_attached_sessions" ]]; then
-                    exec tmux;
-                else
-                    # 在非 attached 状态的 sessions 中选择第一个进行 attach
-                    first_non_attached_session_id=$(echo "$non_attached_sessions" | head -n 1 | awk '{print $1}')
-                    exec tmux a -t $first_non_attached_session_id
-                fi
-            else
-                exec tmux;
-            fi;
-            
-        fi      
-    fi
-else
-    echo "-> disabled tmux <-"
-fi
-
 # 启动 autojump
 if [ -s $HOME/.autojump/share/autojump/autojump.bash ]; then
     source $HOME/.autojump/share/autojump/autojump.bash
