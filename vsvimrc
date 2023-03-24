@@ -1,0 +1,140 @@
+" ##vimrc for ideavim##
+
+
+" 输入搜索关键字时跳转到匹配的结果
+" 但并未真正跳转,仍需要按enter键才会真正跳转
+" 找不到匹配或按esc键则回到光标原来的位置
+" incsearch
+set is
+
+" 搜索不区分大小写
+" ignorecase
+set ic
+
+" 搜索智能区分大小写
+" 本选项的作用是配合上面不区分大小写的设置
+" 这样,只要包含一个大写字母则搜索时区分大小写
+" smartcase
+set scs
+
+" 光标上下最少保留行数
+" 比如当向下移动光标时,光标不会移动到当前编辑区最低部
+" 才开始滚动编辑区,这样能保证看到部分连续的上下文
+" scrolloff
+set so=4
+
+" 同上,但对横向滚动起作用,且只有设置了nowrap(下面)的时候才起作用
+" sidescrolloff
+set siso=4
+
+" 显示行数
+" number
+set nu
+" relativenumber
+"set rnu
+
+" 高亮搜索时匹配到的搜过结果
+" hlsearch
+set hls
+
+
+" 以下设置一些超时时间(超过这个时间后才不在等待后续按键)
+" 这样可以避免状态栏提示信息的一点延迟
+" 开启映射超迟(默认是开启):自己定义的按键映射比如<Space>y
+set timeout
+" 设置映射超迟时间(默认是1000)
+set timeoutlen=3000
+
+
+
+
+" ##########################插件设置##########################
+" IdeaVimExtention
+" 自动在 Normal 和 Insert 模式下切换中英输入法
+" set keep-english-in-normal[-and-restore-in-insert]
+" 根据上下文文本自动猜测进入 Insert 模式时使用的输入法状态
+" let context_aware=1
+let context_aware=0
+set keep-english-in-normal-and-restore-in-insert
+
+
+
+" ##########################按键映射设置##########################
+" map:全局的映射,映射之后的按键可以递归(被再次映射)
+" noremap:全局的映射,但映射后的按键不可递归(多用于定义一个命令)
+" unmap:删除一个映射
+" mapclear:删除所有映射
+" 映射也区分模式,如果上述命令前有如下字符,则该命令只对该模式生效:
+" n:normal(正常)模式下
+" v:可视模式
+" i:插入模式
+" c:命令行模式
+
+" 更方便的进入命令模式
+nnoremap <Space>; :
+
+" 插入模式下快速移动光标
+inoremap <C-H> <Left>
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-L> <Right>
+
+" 插入二合字符
+" 默认是<C-K>,但已被上面的定义所占用
+inoremap <Insert> <C-K>
+
+" 快速移动到行首行尾
+" 直接使用map命令从而全局不使用H,L的原功能
+map H ^
+map L $
+" 可视模式下移动到行尾(不包含换行符)
+vnoremap L $h
+
+" 复制到系统剪切板
+noremap <Space>y "+y
+
+" 复制行到系统剪切板
+noremap <Space>Y "+yy
+
+" 剪切到系统剪切板
+noremap <Space>d "+d
+noremap <Space>x "+x
+
+" 从系统剪切板粘贴
+noremap <Space>p "+p
+noremap <Space>P "+P
+
+" 保存和退出
+nnoremap <Space>q :q<CR>
+nnoremap <Space>w :w<CR>
+
+" 保证搜索结果高亮,避免下面取消高亮后在此搜索没有高亮
+nnoremap n :set hlsearch<CR>nzz
+nnoremap N :set hlsearch<CR>Nzz
+nnoremap * :set hlsearch<CR>*
+nnoremap # :set hlsearch<CR>#
+
+" 取消搜索的高亮
+nnoremap <Space><Space> :set nohlsearch<cr>
+
+" 快速搜索光标下的单词
+" 向下搜索
+nnoremap <Space>/ :set hlsearch<CR>viwy/<C-R>"<CR>
+" 向上搜索
+nnoremap <Space>? :set hlsearch<CR>viwy?<C-R>"<CR>
+
+" 快速可视模式下搜索高亮的内容
+" 向下搜索
+vnoremap / y:set hlsearch<CR>/<C-R>"<CR>
+" 向上搜索
+vnoremap ? y:set hlsearch<CR>?<C-R>"<CR>
+
+" 窗口切换
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+
+
+
