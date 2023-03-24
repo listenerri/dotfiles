@@ -23,10 +23,6 @@ set scs
 " scrolloff
 set so=4
 
-" 同上,但对横向滚动起作用,且只有设置了nowrap(下面)的时候才起作用
-" sidescrolloff
-set siso=4
-
 " 显示行数
 " number
 set nu
@@ -44,18 +40,6 @@ set hls
 set timeout
 " 设置映射超迟时间(默认是1000)
 set timeoutlen=3000
-
-
-
-
-" ##########################插件设置##########################
-" IdeaVimExtention
-" 自动在 Normal 和 Insert 模式下切换中英输入法
-" set keep-english-in-normal[-and-restore-in-insert]
-" 根据上下文文本自动猜测进入 Insert 模式时使用的输入法状态
-" let context_aware=1
-let context_aware=0
-set keep-english-in-normal-and-restore-in-insert
 
 
 
