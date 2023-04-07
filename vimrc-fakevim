@@ -94,8 +94,10 @@ nnoremap <Space>q :q<CR>
 nnoremap <Space>w :w<CR>
 
 " 保证搜索结果高亮,避免下面取消高亮后在此搜索没有高亮
-nnoremap n :set hlsearch<CR>nzz
-nnoremap N :set hlsearch<CR>Nzz
+nnoremap n :set hlsearch<CR>n
+nnoremap N :set hlsearch<CR>N
+nnoremap * :set hlsearch<CR>*
+nnoremap # :set hlsearch<CR>#
 
 " 取消搜索的高亮
 nnoremap <Space><Space> :set nohlsearch<cr>
