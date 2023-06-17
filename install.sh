@@ -33,7 +33,7 @@ install_bash_dot_files() {
     ln -s -f $DotFilesDir/bashrc $HOME/.bashrc
     ln -s -f $DotFilesDir/bash_profile $HOME/.bash_profile
     ln -s -f $DotFilesDir/bash_logout $HOME/.bash_logout
-    ln -s -f $DotFilesDir/libs/complete-alias/bash_completion.sh $HOME/.bash_completion_alias
+    ln -s -f $DotFilesDir/libs/complete-alias/complete_alias $HOME/.bash_completion_alias
 }
 
 install_conky_dot_files() {
