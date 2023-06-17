@@ -229,11 +229,11 @@ if [[ -z $IsOSX ]]; then
     alias o='xdg-open'
 fi
 
-if [[ -z $WSLHOST_IP ]]; then
-    WSLHOST_IP=`grep "^nameserver" /etc/resolv.conf | head -n 1 | awk -F' ' '{print $2}'`
-fi
 alias http-proxy-set='export http_proxy=http://127.0.0.1:1081 https_proxy=http://127.0.0.1:1081; echo "http(s) proxy has been set to http://127.0.0.1:1081"'
-alias http-proxy-set-wsl="export http_proxy=http://$WSLHOST_IP:1080 https_proxy=http://$WSLHOST_IP:1080; echo \"http(s) proxy has been set to http://$WSLHOST_IP:1080\""
+if [[ -z $WSLHOST_IP -a -f /etc/resolv.conf ]]; then
+    WSLHOST_IP=`grep "^nameserver" /etc/resolv.conf | head -n 1 | awk -F' ' '{print $2}'`
+    alias http-proxy-set-wsl="export http_proxy=http://$WSLHOST_IP:1080 https_proxy=http://$WSLHOST_IP:1080; echo \"http(s) proxy has been set to http://$WSLHOST_IP:1080\""
+fi
 alias http-proxy-unset='unset http_proxy https_proxy'
 
 alias man-en='LANG=en_US.UTF-8 man'
