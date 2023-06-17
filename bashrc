@@ -73,7 +73,11 @@ if [[ "$(type -t __git_ps1)" == "function" ]]; then
     else
         echo -n "\[\e[1;31m\]:(";
     fi
-    ) \u@\H \D{(%c)}\n\[\e[1;36m\]\w\[\e[1;33m\]$(__git_ps1 " (%s)") $(
+    ) \u@\H \D{(%c)} $(
+    if [[ -n $MSYSTEM ]]; then
+        echo -n "\[\e[1;35m\]$MSYSTEM";
+    fi
+    )\012\[\e[1;36m\]\w\[\e[1;33m\]$(__git_ps1 " (%s)") $(
     if [[ ${EUID} == 0 ]]; then
         echo -n "\[\e[1;31m\]";
     else
@@ -230,7 +234,7 @@ if [[ -z $IsOSX ]]; then
 fi
 
 alias http-proxy-set='export http_proxy=http://127.0.0.1:1081 https_proxy=http://127.0.0.1:1081; echo "http(s) proxy has been set to http://127.0.0.1:1081"'
-if [[ -z $WSLHOST_IP -a -f /etc/resolv.conf ]]; then
+if [[ -z $WSLHOST_IP && -f /etc/resolv.conf ]]; then
     WSLHOST_IP=`grep "^nameserver" /etc/resolv.conf | head -n 1 | awk -F' ' '{print $2}'`
     alias http-proxy-set-wsl="export http_proxy=http://$WSLHOST_IP:1080 https_proxy=http://$WSLHOST_IP:1080; echo \"http(s) proxy has been set to http://$WSLHOST_IP:1080\""
 fi
@@ -306,6 +310,8 @@ if [[ -f "$HOME/.cocos2d-x-env" ]]; then
 fi
 
 # nodejs nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [[ -d "$HOME/.nvm" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
