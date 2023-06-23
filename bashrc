@@ -233,13 +233,6 @@ if [[ -z $IsOSX ]]; then
     alias o='xdg-open'
 fi
 
-alias http-proxy-set='export http_proxy=http://127.0.0.1:1081 https_proxy=http://127.0.0.1:1081; echo "http(s) proxy has been set to http://127.0.0.1:1081"'
-if [[ -z $WSLHOST_IP && -f /etc/resolv.conf ]]; then
-    WSLHOST_IP=`grep "^nameserver" /etc/resolv.conf | head -n 1 | awk -F' ' '{print $2}'`
-    alias http-proxy-set-wsl="export http_proxy=http://$WSLHOST_IP:1080 https_proxy=http://$WSLHOST_IP:1080; echo \"http(s) proxy has been set to http://$WSLHOST_IP:1080\""
-fi
-alias http-proxy-unset='unset http_proxy https_proxy'
-
 alias man-en='LANG=en_US.UTF-8 man'
 alias man-zh='LANG=zh_CN.UTF-8 man'
 
@@ -275,6 +268,51 @@ man-table-of-contents() {
         return 255
     fi
     env LANG=en_US.UTF-8 man "$1" | grep -P "^[A-Z]|^   [A-Z]"
+}
+
+http-proxy-set() {
+    proxy_addr_default=127.0.0.1
+    proxy_port_default=1080
+    echo -n "please input proxy addr(default is $proxy_addr_default): "
+    read proxy_addr
+    echo -n "please input proxy port(default is $proxy_port_default): "
+    read proxy_port
+    if [[ -z $proxy_addr ]]; then
+        proxy_addr=$proxy_addr_default
+    fi
+    if [[ -z $proxy_port ]]; then
+        proxy_port=$proxy_port_default
+    fi
+    proxy_server=http://$proxy_addr:$proxy_port
+    echo "setting http proxy server: $proxy_server"
+    export http_proxy=$proxy_server https_proxy=$proxy_server
+    unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
+}
+
+if [[ -z $WSLHOST_IP && -f /etc/resolv.conf ]]; then
+    WSLHOST_IP=`grep "^nameserver" /etc/resolv.conf | head -n 1 | awk -F' ' '{print $2}'`
+    http-proxy-set-wsl() {
+        proxy_addr_default=$WSLHOST_IP
+        proxy_port_default=1080
+        echo -n "please input wsl proxy addr(default is $proxy_addr_default): "
+        read proxy_addr
+        echo -n "please input wsl proxy port(default is $proxy_port_default): "
+        read proxy_port
+        if [[ -z $proxy_addr ]]; then
+            proxy_addr=$proxy_addr_default
+        fi
+        if [[ -z $proxy_port ]]; then
+            proxy_port=$proxy_port_default
+        fi
+        proxy_server=http://$proxy_addr:$proxy_port
+        echo "setting http proxy server: $proxy_server"
+        export http_proxy=$proxy_server https_proxy=$proxy_server
+        unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
+    }
+fi
+
+http-proxy-unset() {
+    unset http_proxy https_proxy
 }
 
 # 设置其他环境变量
