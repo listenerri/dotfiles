@@ -349,28 +349,42 @@ fi
 
 # nodejs nvm
 if [[ -d "$HOME/.nvm" ]]; then
-    # lazy load nvm
     export NVM_DIR="$HOME/.nvm"
     if [[ -f $NVM_DIR/alias/default ]]; then
-        nvmAliasDefault=$(cat "$NVM_DIR/alias/default")
-        nvmAliasDefaultVersionCodeName=$(cat "$NVM_DIR/alias/$nvmAliasDefault")
-        nvmDefaultNodeVersion=$(cat "$NVM_DIR/alias/$nvmAliasDefaultVersionCodeName")
-        nvmDefaultNodeVersionDir="$NVM_DIR/versions/node/$nvmDefaultNodeVersion"
-        export PATH=$nvmDefaultNodeVersionDir/bin:$PATH
-        unset nvmAliasDefault \
-            nvmAliasDefaultVersionCodeName \
-            nvmDefaultNodeVersion \
-            nvmDefaultNodeVersionDir
-        nvm() {
-            echo "lazy loading nvm..."
-            unset nvm
+        # 延后加载 nvm
+        nvmDefaultNodeVersion="$(cat "$NVM_DIR/alias/default")"
+        while [[ -f $NVM_DIR/alias/$nvmDefaultNodeVersion ]]; do
+            # 防止 nvm alias 递归
+            nvmDefaultNodeVersionTmp="$(cat "$NVM_DIR/alias/$nvmDefaultNodeVersion")"
+            if [[ "$nvmDefaultNodeVersionTmp" == "$nvmDefaultNodeVersion" ]]; then
+                break
+            fi
+            nvmDefaultNodeVersion=$nvmDefaultNodeVersionTmp
+        done
+        nvmDefaultNodeVersionDir=$(find versions/ -name "$nvmDefaultNodeVersion" -and -type d | head -n 1)
+        if [[ -d "$nvmDefaultNodeVersionDir/bin" ]]; then
+            export PATH=$nvmDefaultNodeVersionDir/bin:$PATH
+            nvm() {
+                echo "lazy loading nvm..."
+                unset nvm
+                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+                [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+                echo "lazy loading nvm done"
+                nvm $@
+            }
+        else
+            echo "fallback to loading nvm..."
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
             [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-            echo "lazy loading nvm done"
-            nvm $@
-        }
+            echo "fallback to loading nvm done"
+        fi
+        unset nvmDefaultNodeVersion \
+            nvmDefaultNodeVersionTmp \
+            nvmDefaultNodeVersionDir
     else
+        echo "loading nvm..."
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
         [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+        echo "loading nvm done"
     fi
 fi
