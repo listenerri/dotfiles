@@ -361,7 +361,7 @@ if [[ -d "$HOME/.nvm" ]]; then
             fi
             nvmDefaultNodeVersion=$nvmDefaultNodeVersionTmp
         done
-        nvmDefaultNodeVersionDir=$(find versions/ -name "$nvmDefaultNodeVersion" -and -type d | head -n 1)
+        nvmDefaultNodeVersionDir=$(find "$NVM_DIR/versions" -name "$nvmDefaultNodeVersion" -and -type d | head -n 1)
         if [[ -d "$nvmDefaultNodeVersionDir/bin" ]]; then
             export PATH=$nvmDefaultNodeVersionDir/bin:$PATH
             nvm() {
