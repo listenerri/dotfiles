@@ -349,7 +349,28 @@ fi
 
 # nodejs nvm
 if [[ -d "$HOME/.nvm" ]]; then
+    # lazy load nvm
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    if [[ -f $NVM_DIR/alias/default ]]; then
+        nvmAliasDefault=$(cat "$NVM_DIR/alias/default")
+        nvmAliasDefaultVersionCodeName=$(cat "$NVM_DIR/alias/$nvmAliasDefault")
+        nvmDefaultNodeVersion=$(cat "$NVM_DIR/alias/$nvmAliasDefaultVersionCodeName")
+        nvmDefaultNodeVersionDir="$NVM_DIR/versions/node/$nvmDefaultNodeVersion"
+        export PATH=$nvmDefaultNodeVersionDir/bin:$PATH
+        unset nvmAliasDefault \
+            nvmAliasDefaultVersionCodeName \
+            nvmDefaultNodeVersion \
+            nvmDefaultNodeVersionDir
+        nvm() {
+            echo "lazy loading nvm..."
+            unset nvm
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+            echo "lazy loading nvm done"
+            nvm $@
+        }
+    else
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    fi
 fi
