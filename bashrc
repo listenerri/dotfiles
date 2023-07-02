@@ -236,6 +236,9 @@ fi
 alias man-en='LANG=en_US.UTF-8 man'
 alias man-zh='LANG=zh_CN.UTF-8 man'
 
+# 修复 tmux 在某些情况下颜色不对，比如 ssh 下使用 vim 时
+alias tmux='tmux -2'
+
 # 让所有 alias 支持 bash 补全
 if [[ -f "$HOME/.bash_completion_alias" ]]; then
     source "$HOME"/.bash_completion_alias
