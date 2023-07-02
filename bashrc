@@ -362,7 +362,7 @@ if [[ -d "$HOME/.nvm" ]]; then
             nvmDefaultNodeVersion=$nvmDefaultNodeVersionTmp
         done
         nvmDefaultNodeVersionDir=$(find "$NVM_DIR/versions" -name "$nvmDefaultNodeVersion" -and -type d | head -n 1)
-        if [[ -d "$nvmDefaultNodeVersionDir/bin" ]]; then
+        if [[ -n "$nvmDefaultNodeVersion" &&  -n "$nvmDefaultNodeVersionDir" && -d "$nvmDefaultNodeVersionDir/bin" ]]; then
             export PATH=$nvmDefaultNodeVersionDir/bin:$PATH
             nvm() {
                 echo "lazy loading nvm..."
