@@ -351,6 +351,11 @@ if [[ -f "$HOME/.cocos2d-x-env" ]]; then
 fi
 
 # nodejs nvm
+# 下面这些复杂的判断只是为了当 nvm 的 default alias 到具体已安装的版本时，
+# 不再/延迟加载 nvm 脚本，而是直接 export 那么 default 版本到环境变量 PATH 中。
+# 如果需要长期使用非默认 lts 版本，或者不安装默认 lts 版本，可以执行如下命令设置默认版本：
+# nvm alias default <VersionName|lts/LtsName> 
+# 之后，再次打开终端时将不再加载 nvm，而是直接使用设置的 default 版本
 if [[ -d "$HOME/.nvm" ]]; then
     export NVM_DIR="$HOME/.nvm"
     if [[ -f $NVM_DIR/alias/default ]]; then
