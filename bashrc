@@ -61,6 +61,8 @@ if [[ "$(type -t __git_ps1)" != "function" ]]; then
         source /usr/share/git/git-prompt.sh
     elif [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
         source /usr/share/git/completion/git-prompt.sh
+    elif [[ -f $HOME/dotfiles/git-prompt.sh ]]; then
+        source $HOME/dotfiles/git-prompt.sh
     fi
 fi
 if [[ "$(type -t __git_ps1)" == "function" ]]; then
