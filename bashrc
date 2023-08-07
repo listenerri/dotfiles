@@ -73,7 +73,7 @@ if [[ "$(type -t __git_ps1)" == "function" ]]; then
     if [[ $? == 0 ]]; then
         echo -n "\[\e[1;32m\]:)";
     else
-        echo -n "\[\e[1;31m\]:(";
+        echo -n "\[\e[1;31m\]:( [$?]";
     fi
     ) \u@\H \D{(%c)} $(
     if [[ -n $MSYSTEM ]]; then
