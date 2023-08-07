@@ -70,11 +70,13 @@ if [[ "$(type -t __git_ps1)" == "function" ]]; then
     export GIT_PS1_SHOWUNTRACKEDFILES=1
     #GIT_PS1_SHOWCOLORHINTS=1
     PS1='$(
-    if [[ $? == 0 ]]; then
+    retCode=$?
+    if [[ $retCode == 0 ]]; then
         echo -n "\[\e[1;32m\]:)";
     else
-        echo -n "\[\e[1;31m\]:( [$?]";
+        echo -n "\[\e[1;31m\]:( [$retCode]";
     fi
+    unset retCode
     ) \u@\H \D{(%c)} $(
     if [[ -n $MSYSTEM ]]; then
         echo -n "\[\e[1;35m\]$MSYSTEM";
