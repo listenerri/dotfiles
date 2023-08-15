@@ -7,7 +7,7 @@ esac
 
 IsOSX=$(uname -a | grep -i Darwin)
 
-export PATH=$HOME/bin:$HOME/scripts/shell:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 if [[ -n $IsOSX ]]; then
     # 禁止 brew 自动更新仓库
