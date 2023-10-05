@@ -57,6 +57,9 @@ nnoremap a :!fakevim-smartim re<CR>a
 nnoremap A :!fakevim-smartim re<CR>A
 nnoremap s :!fakevim-smartim re<CR>s
 nnoremap S :!fakevim-smartim re<CR>S
+nnoremap o :!fakevim-smartim re<CR>o
+nnoremap O :!fakevim-smartim re<CR>O
+vnoremap s s<C-O>:!fakevim-smartim re<CR>
 
 " 插入模式下快速移动光标
 inoremap <C-H> <Left>
