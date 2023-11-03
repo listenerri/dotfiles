@@ -7,7 +7,7 @@ esac
 
 IsOSX=$(uname -a | grep -i Darwin)
 
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:$PATH
 
 if [[ -n $IsOSX ]]; then
     # 禁止 brew 自动更新仓库
@@ -324,17 +324,6 @@ http-proxy-unset() {
 
 # 设置其他环境变量
 export EDITOR=vim
-
-# java
-#export JAVA_HOME=/usr/lib/jvm/default
-#export JRE_HOME=$JAVA_HOME/jre
-#export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-#export PATH=$JAVA_HOME/bin:$PATH
-unset _JAVA_OPTIONS
-
-# android
-#export ANDROID_HOME=$HOME/android-sdk-linux
-#export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 # golang
 if [[ $IsOSX ]]; then
