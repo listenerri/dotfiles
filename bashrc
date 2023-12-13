@@ -77,11 +77,16 @@ if [[ "$(type -t __git_ps1)" == "function" ]]; then
         echo -n "\[\e[1;31m\]:( [$retCode]";
     fi
     unset retCode
-    ) \u@\H \D{(%c)} $(
+    ) \u@\H \D{[%Y%m%d-%H%M%S]} $(
     if [[ -n $MSYSTEM ]]; then
         echo -n "\[\e[1;35m\]$MSYSTEM";
     fi
-    )\012\[\e[1;36m\]\w\[\e[1;33m\]$(__git_ps1 " (%s)") $(
+    )\012\[\e[1;36m\]\w\[\e[1;33m\]$(
+    if [[ -z $MSYSTEM ]]; then
+        __git_ps1 " (%s)"
+    else
+        echo -n " "
+    fi
     if [[ ${EUID} == 0 ]]; then
         echo -n "\[\e[1;31m\]";
     else
