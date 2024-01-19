@@ -243,11 +243,11 @@ fi
 alias man-en='LANG=en_US.UTF-8 man'
 alias man-zh='LANG=zh_CN.UTF-8 man'
 
-# 修复 tmux 在某些情况下颜色不对，比如 ssh 下使用 vim 时
-alias tmux='tmux -2'
+# 修复 windows-terminal 上使用 msys2 tmux 无法启动
 if [[ -n "$WT_SESSION" ]]; then
-    # 修复 windows-terminal 上使用 msys2 tmux 无法启动
-    alias tmux='script -q -c "tmux -2" /dev/null'
+    function tmux() {
+        script -q -c "tmux $@" /dev/null
+    }
 fi
 
 # 让所有 alias 支持 bash 补全
