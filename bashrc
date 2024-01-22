@@ -396,3 +396,8 @@ if [[ -d "$HOME/.nvm" ]]; then
         echo "loading nvm done"
     fi
 fi
+
+# rust
+if [[ -f $HOME/.cargo/env ]]; then
+    . "$HOME/.cargo/env"
+fi
