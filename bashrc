@@ -86,11 +86,11 @@ if [[ "$(type -t __git_ps1)" == "function" ]]; then
         __git_ps1 " (%s)"
     fi
     if [[ ${EUID} == 0 ]]; then
-        echo -n "\[\e[1;31m\]";
+        echo -n "\012\[\e[1;31m\]\$\[\e[0m\] ";
     else
-        echo -n "\[\e[1;36m\]";
+        echo -n "\012\[\e[1;36m\]\$\[\e[0m\] ";
     fi
-    ) \$ \[\e[0m\]'
+    )'
 fi
 
 # 设置别名
