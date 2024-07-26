@@ -1,4 +1,4 @@
-" ##vimrc for ideavim##
+" ##vimrc for vsvim##
 
 
 " 输入搜索关键字时跳转到匹配的结果
@@ -119,6 +119,9 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
-
-
+" 跳转相关
+" vsvim 默认的跳转有问题，映射到 vs 自带的跳转
+nnoremap <C-]> :vsc Edit.GoToDefinition<CR>
+nnoremap <C-O> :vsc View.NavigateBackward<CR>
+nnoremap <C-I> :vsc View.NavigateForward<CR>
 
