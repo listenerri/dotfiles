@@ -43,11 +43,10 @@ install_conky_dot_files() {
 }
 
 install_git_dot_files() {
-    rm -rf $HOME/.config/git/config $HOME/.config/git/ignore
+    rm -rf $HOME/.config/git/config
     echo "install for git..."
     mkdir -p $HOME/.config/git
     ln -s -f $DotFilesDir/git-config $HOME/.config/git/config
-    ln -s -f $DotFilesDir/git-ignore $HOME/.config/git/ignore
 }
 
 install_qtcreator_dot_files() {
