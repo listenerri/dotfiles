@@ -42,14 +42,6 @@ install_conky_dot_files() {
     ln -s -f $DotFilesDir/conky.conf $HOME/.conky.conf
 }
 
-install_gdb_dot_files() {
-    rm -rf $HOME/.gdbinit $HOME/.config/gdb/qt5printers
-    echo "install for gdb..."
-    mkdir -p $HOME/.config/gdb
-    ln -s -f $DotFilesDir/gdbinit $HOME/.gdbinit
-    ln -s -f $DotFilesDir/libs/qt5printers $HOME/.config/gdb/qt5printers
-}
-
 install_git_dot_files() {
     rm -rf $HOME/.config/git/config $HOME/.config/git/ignore
     echo "install for git..."
@@ -113,18 +105,6 @@ if [[ -n "${isOK}" ]]; then
     fi
 else
     install_conky_dot_files
-fi
-
-echo -n "install_gdb_dot_files: [Y/n]"
-read isOK
-if [[ -n "${isOK}" ]]; then
-    if [[ "${isOK}" = "y" || "${isOK}" = "Y" ]]; then
-        install_gdb_dot_files
-    else
-	echo "not install it"
-    fi
-else
-    install_gdb_dot_files
 fi
 
 echo -n "install_git_dot_files: [Y/n]"

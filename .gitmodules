@@ -1,6 +1,3 @@
 [submodule "libs/complete-alias"]
 	path = libs/complete-alias
 	url = git@github.com:cykerway/complete-alias.git
-[submodule "libs/qt5printers"]
-	path = libs/qt5printers
-	url = git@github.com:Lekensteyn/qt5printers.git
