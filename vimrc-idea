@@ -91,6 +91,11 @@ map L $
 " 可视模式下移动到行尾(不包含换行符)
 vnoremap L $h
 
+" 更高效的 jump 操作
+" 依赖 IDE 插件 AceJump
+nmap f <Action>(AceAction)
+nmap F <Action>(AceAction)
+
 " 复制到系统剪切板
 noremap <Space>y "+y
 
@@ -117,12 +122,6 @@ nnoremap # :set hlsearch<CR>#
 
 " 取消搜索的高亮
 nnoremap <Space><Space> :set nohlsearch<cr>
-
-" 快速搜索光标下的单词
-" 向下搜索
-nnoremap <Space>/ :set hlsearch<CR>viwy/<C-R>"<CR>
-" 向上搜索
-nnoremap <Space>? :set hlsearch<CR>viwy?<C-R>"<CR>
 
 " 快速可视模式下搜索高亮的内容
 " 向下搜索
