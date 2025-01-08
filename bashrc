@@ -246,7 +246,10 @@ alias man-zh='LANG=zh_CN.UTF-8 man'
 # 修复 windows-terminal 上使用 msys2 tmux 无法启动
 if [[ -n "$WT_SESSION" ]]; then
     function tmux() {
-        script -q -c "tmux $@" /dev/null
+        # 先将参数赋值到临时变量，否则直接在 script 命令中展开会丢失参数
+        ARGS="$@"
+        script -q -c "tmux $ARGS" /dev/null
+        unset ARGS
     }
 fi
 
