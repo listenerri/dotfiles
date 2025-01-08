@@ -243,14 +243,30 @@ fi
 alias man-en='LANG=en_US.UTF-8 man'
 alias man-zh='LANG=zh_CN.UTF-8 man'
 
-# 修复 windows-terminal 上使用 msys2 tmux 无法启动
-if [[ -n "$WT_SESSION" && -n "$MSYSTEM" ]]; then
-    function tmux() {
-        # 先将参数赋值到临时变量，否则直接在 script 命令中展开会丢失参数
-        ARGS="$@"
-        script -q -c "tmux $ARGS" /dev/null
-        unset ARGS
-    }
+# 修复 windows 下 tmux 的相关问题
+if [[ -n "$MSYSTEM" ]]; then
+    # 修复 windows-terminal 上使用 msys2 tmux 无法启动
+    if [[ -n "$WT_SESSION" ]]; then
+        function tmux() {
+            # 先将参数赋值到临时变量，否则直接在后续命令中展开会丢失参数
+            ARGS="$@"
+            # 修复 msys2 下 tmux 启动慢
+            # https://github.com/tmux/tmux/issues/3428
+            pgrep tmux > /dev/null 2>&1 || rm -rf "/tmp/tmux-${UID}/default"
+            script -q -c "command tmux $ARGS" /dev/null
+            unset ARGS
+        }
+    else
+        function tmux() {
+            # 先将参数赋值到临时变量，否则直接在后续命令中展开会丢失参数
+            ARGS="$@"
+            # 修复 msys2 下 tmux 启动慢
+            # https://github.com/tmux/tmux/issues/3428
+            pgrep tmux > /dev/null 2>&1 || rm -rf "/tmp/tmux-${UID}/default"
+            command tmux $ARGS
+            unset ARGS
+        }
+    fi
 fi
 
 # 让所有 alias 支持 bash 补全
