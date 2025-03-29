@@ -243,7 +243,8 @@ fi
 alias man-en='LANG=en_US.UTF-8 man'
 alias man-zh='LANG=zh_CN.UTF-8 man'
 
-# 修复 windows 下 tmux 的相关问题
+# tmux
+# 修复 msys2 下 tmux 的相关问题
 if [[ -n "$MSYSTEM" ]]; then
     # 修复 windows-terminal 上使用 msys2 tmux 无法启动
     if [[ -n "$WT_SESSION" ]]; then
@@ -268,6 +269,7 @@ if [[ -n "$MSYSTEM" ]]; then
         }
     fi
 fi
+alias t=tmux
 
 # 让所有 alias 支持 bash 补全
 if [[ -f "$HOME/.bash_completion_alias" ]]; then
