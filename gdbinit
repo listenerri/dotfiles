@@ -13,12 +13,9 @@ python
 import sys
 import os
 print(">>>> Loading qt pretty printers <<<<")
-if sys.platform == 'win32':
-    sys.path.insert(0, os.environ["USERPROFILE"] + '/.config/gdb/printers')
-else:
-    sys.path.insert(0, os.environ["HOME"] + '/.config/gdb/printers')
+sys.path.insert(0, os.path.expanduser('~/.config/gdb/printers'))
 from qt import register_qt_printers
-register_qt_printers (None)
+register_qt_printers(None)
 print(">>>> Loading qt pretty printers done <<<<")
 end
 
