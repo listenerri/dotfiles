@@ -239,6 +239,9 @@ alias ho='history -w'
 if [[ -z $IsOSX ]]; then
     alias o='xdg-open'
 fi
+if [[ -n $WSL_DISTRO_NAME ]]; then
+    alias o='explorer.exe'
+fi
 
 alias man-en='LANG=en_US.UTF-8 man'
 alias man-zh='LANG=zh_CN.UTF-8 man'
