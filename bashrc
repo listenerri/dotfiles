@@ -126,22 +126,28 @@ if [[ -z $IsOSX ]]; then
     alias aac='sudo apt autoclean'
 fi
 
-alias gl='git log'
-alias glr='git log --graph'
-alias gs='git status'
-alias gd='git diff'
 alias ga='git add'
 alias gaa='git add .'
-alias gc='git commit'
-alias gca='git commit --amend'
-alias gpl='git pull'
-alias gps='git push'
 alias gb='git branch'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
+alias gc='git commit'
+alias gca='git commit --amend'
 alias gch='git checkout'
 alias gcm='git checkout master'
+alias gcp='git cherry-pick'
+alias gd='git diff'
+alias gdh='git diff HEAD'
 alias gdm='git diff master'
+alias gl='git log'
+alias glr='git log --graph'
+alias gpl='git pull'
+alias gps='git push'
+alias gr='git remote'
+alias grv='git remote -v'
+alias gra='git remote add'
+alias grm='git rebase master'
+alias gs='git status'
 alias gsl='git stash list'
 alias gsi='git stash push'
 alias gso='git stash pop'
@@ -149,77 +155,6 @@ alias gsd='git stash drop'
 alias gss='git stash show -p'
 alias gt='git tag'
 alias gta='git tag -a'
-alias gcp='git cherry-pick'
-
-# 拉取上游仓库 origin 中 master 分支的更新
-# 推送到自己的仓库 ri 中 master 分支
-# 用于更新自己 fork 的仓库到上游版本
-# 此行为类似 follow，故而命名为 gf
-#gf() {
-#    current_branch="$(git branch | grep "\\*" | cut -b 3-)"
-#    echo "Current branch is: $current_branch"
-#    echo "Fetch master from the remote: origin"
-#    git fetch --tags origin master
-#    echo "Fetch done"
-#    if [[ x"master" != x${current_branch} ]]; then
-#        git checkout master || return $?
-#    fi
-#    git merge FETCH_HEAD || return $?
-#    git push ri master || return $?
-#    if [[ x"master" != x${current_branch} ]]; then
-#        git checkout "${current_branch}" || return $?
-#    fi
-#}
-
-alias gr='git remote'
-alias grv='git remote -v'
-alias gra='git remote add'
-
-# Gerrit git review function
-#gr() {
-#    branch_array=($(git branch | cut -b 3-))
-#
-#    index=1
-#    for branch in "${branch_array[@]}"; do
-#        if [[ $branch == master ]]; then
-#            echo "[$index] $branch"
-#        else
-#            echo " $index  $branch"
-#        fi
-#        index=$(expr $index + 1)
-#    done
-#
-#    echo -n "specify a branch to review: "
-#    read selected_index
-#
-#    # default branch is master
-#    if [[ -z $selected_index ]]; then
-#        echo "review to branch master:"
-#        git review -r origin master
-#        return $?
-#    fi
-#
-#    selected_branch=${branch_array[$selected_index]}
-#    if [[ -n $selected_branch ]]; then
-#        echo "review to branch $selected_branch: "
-#        git review -r origin $selected_branch
-#        return $?
-#    else
-#        echo "Error: specified branch can not find!";
-#    fi
-#}
-
-alias grm='git rebase master'
-# git rebase master function
-#grm() {
-#    flag=$(git branch | grep "\\* dev/")
-#    if [[ -n $flag ]]; then
-#        echo "Warning: rebase master in dev branch!"
-#        echo "use complete command 'git rebase master' if you really want to do this!"
-#    else
-#        git rebase master
-#    fi
-#}
 
 alias sss='svn status'
 alias sup='svn update'
