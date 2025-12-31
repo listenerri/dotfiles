@@ -174,7 +174,7 @@ alias ho='history -w'
 if [[ -z $IsOSX ]]; then
     alias o='xdg-open'
 fi
-if [[ -n $WSL_DISTRO_NAME ]]; then
+if [[ -n $WSL_DISTRO_NAME || -n $MSYSTEM ]]; then
     alias o='explorer.exe'
 fi
 
