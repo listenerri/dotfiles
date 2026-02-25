@@ -1,36 +1,17 @@
+##########################################################
 # 如果是非交互式 shell 则直接退出
+##########################################################
+
 [[ $- != *i* ]] && return
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-IsOSX=$(uname -a | grep -i Darwin)
 
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
-
-if [[ -n $IsOSX ]]; then
-    # 禁止 brew 自动更新仓库
-    export HOMEBREW_NO_AUTO_UPDATE=1
-    # 使用 brew 安装的 bash
-    export SHELL=/usr/local/bin/bash
-fi
-
-# 启动 autojump
-if [ -s $HOME/.autojump/share/autojump/autojump.bash ]; then
-    source $HOME/.autojump/share/autojump/autojump.bash
-elif [ -s /usr/local/share/autojump/autojump.bash ]; then
-    source /usr/local/share/autojump/autojump.bash
-elif [ -s /usr/share/autojump/autojump.bash ]; then
-    source /usr/share/autojump/autojump.bash
-fi
-
-# 不把重复的行和空格开头的行加入历史记录
-HISTCONTROL=ignoreboth
-# 设置退出 shell 时，当前 shell 中的最后多少行命令被写入历史记录文件
-HISTSIZE=20000
-# 设置历史记录文件中可以存储多少行命令
-HISTFILESIZE=20000
+##########################################################
+# bash 选项
+##########################################################
 
 # 追加历史记录而不是覆盖
 shopt -s histappend
@@ -38,93 +19,40 @@ shopt -s histappend
 shopt -s checkwinsize
 # 当只输入目录并会车时执行对应的 cd 命令
 shopt -s autocd
-
-# 启用补全
-if [[ -n $IsOSX ]]; then
-    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
-elif ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
 # 补全时忽略大小写
 bind "set completion-ignore-case on"
 
-# 设置提示符
-# 要想让 git 相关的提示正常需要安装并启动 bash-completion
-if [[ "$(type -t __git_ps1)" != "function" ]]; then
-    if [[ -f /usr/share/git/git-prompt.sh ]]; then
-        source /usr/share/git/git-prompt.sh
-    elif [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
-        source /usr/share/git/completion/git-prompt.sh
-    elif [[ -f $HOME/dotfiles/git-prompt.sh ]]; then
-        source $HOME/dotfiles/git-prompt.sh
-    fi
-fi
-if [[ "$(type -t __git_ps1)" == "function" ]]; then
-    export GIT_PS1_SHOWDIRTYSTATE=1
-    export GIT_PS1_SHOWUNTRACKEDFILES=1
-    #GIT_PS1_SHOWCOLORHINTS=1
-    PS1='$(
-    retCode=$?
-    if [[ $retCode == 0 ]]; then
-        echo -n "\[\e[1;32m\]:)";
-    else
-        echo -n "\[\e[1;31m\]:( [$retCode]";
-    fi
-    unset retCode
-    ) \u@\H \D{(%Y%m%d-%H%M%S)} $(
-    if [[ -n $MSYSTEM ]]; then
-        echo -n "\[\e[1;35m\]$MSYSTEM";
-    fi
-    )\012\[\e[1;36m\]\w\[\e[1;33m\]$(
-    if [[ -z $MSYSTEM ]]; then
-        __git_ps1 " (%s)"
-    fi
-    if [[ ${EUID} == 0 ]]; then
-        echo -n "\012\[\e[1;31m\]\$\[\e[0m\] ";
-    else
-        echo -n "\012\[\e[1;36m\]\$\[\e[0m\] ";
-    fi
-    )'
-fi
 
+##########################################################
+# bash 环境变量
+##########################################################
+
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+# 不把重复的行和空格开头的行加入历史记录
+export HISTCONTROL=ignoreboth
+# 设置退出 shell 时，当前 shell 中的最后多少行命令被写入历史记录文件
+export HISTSIZE=20000
+# 设置历史记录文件中可以存储多少行命令
+export HISTFILESIZE=20000
+# PROMPT_COMMAND 的内容会在每次执行命令后都执行
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+
+##########################################################
 # 设置别名
+##########################################################
+
 alias grep='grep --color=auto'
-if [[ -n $IsOSX ]]; then
-    alias ll='gls -ahlF --color=auto'
-    alias la='gls -AF --color=auto'
-    alias ls='gls -F --color=auto'
-    alias l='ls'
-else
-    alias ll='ls -ahlF --color=auto'
-    alias la='ls -AF --color=auto'
-    alias ls='ls -F --color=auto'
-    alias l='ls'
-fi
+alias ll='ls -ahlF --color=auto'
+alias la='ls -AF --color=auto'
+alias ls='ls -F --color=auto'
+alias l='ls'
 alias info='info --vi-keys'
 alias en='export LANG=en_US.UTF-8 && export LANGUAGE=en_US'
 alias zh='export LANG=zh_CN.UTF-8 && export LANGUAGE=zh_CN'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-if [[ -z $IsOSX ]]; then
-    alias au='sudo apt update'
-    alias al='apt list'
-    alias as='apt show'
-    alias ap='apt policy'
-    alias alu='sudo apt list --upgradable'
-    alias af='sudo apt full-upgrade'
-    alias ai='sudo apt install'
-    alias ar='sudo apt remove --purge'
-    alias aar='sudo apt autoremove --purge'
-    alias aac='sudo apt autoclean'
-fi
 
 alias ga='git add'
 alias gaa='git add .'
@@ -166,14 +94,12 @@ alias mk='make'
 
 alias dd='dd status=progress'
 
-alias hr='history -r'
-alias hw='history -w'
-alias hi='history -r'
-alias ho='history -w'
+alias hr='history -n'
+alias hw='history -a'
+alias hi='history -n'
+alias ho='history -a'
 
-if [[ -z $IsOSX ]]; then
-    alias o='xdg-open'
-fi
+alias o='xdg-open'
 if [[ -n $WSL_DISTRO_NAME || -n $MSYSTEM ]]; then
     alias o='explorer.exe'
 fi
@@ -181,7 +107,136 @@ fi
 alias man-en='LANG=en_US.UTF-8 man'
 alias man-zh='LANG=zh_CN.UTF-8 man'
 
+# 让所有 alias 支持 bash 补全
+if [[ -f "$HOME/.bash_completion_alias" ]]; then
+    source "$HOME"/.bash_completion_alias
+    aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
+    for ali in "${aliasArray[@]}"; do
+        complete -F _complete_alias "$ali"
+    done
+fi
+
+
+##########################################################
+# 设置提示符
+##########################################################
+
+# 要想让 git 相关的提示正常需要安装并启动 bash-completion
+if [[ "$(type -t __git_ps1)" != "function" ]]; then
+    if [[ -f /usr/share/git/git-prompt.sh ]]; then
+        source /usr/share/git/git-prompt.sh
+    elif [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
+        source /usr/share/git/completion/git-prompt.sh
+    elif [[ -f $HOME/dotfiles/git-prompt.sh ]]; then
+        source $HOME/dotfiles/git-prompt.sh
+    fi
+fi
+if [[ "$(type -t __git_ps1)" == "function" ]]; then
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_SHOWUNTRACKEDFILES=1
+    #GIT_PS1_SHOWCOLORHINTS=1
+    PS1='$(
+    retCode=$?
+    if [[ $retCode == 0 ]]; then
+        echo -n "\[\e[1;32m\]:)";
+    else
+        echo -n "\[\e[1;31m\]:( [$retCode]";
+    fi
+    unset retCode
+    ) \u@\H \D{(%Y%m%d-%H%M%S)} $(
+    if [[ -n $MSYSTEM ]]; then
+        echo -n "\[\e[1;35m\]$MSYSTEM";
+    fi
+    )\012\[\e[1;36m\]\w\[\e[1;33m\]$(
+    if [[ -z $MSYSTEM ]]; then
+        __git_ps1 " (%s)"
+    fi
+    if [[ ${EUID} == 0 ]]; then
+        echo -n "\012\[\e[1;31m\]\$\[\e[0m\] ";
+    else
+        echo -n "\012\[\e[1;36m\]\$\[\e[0m\] ";
+    fi
+    )'
+fi
+
+
+##########################################################
+# 函数定义
+##########################################################
+
+# man 手册支持颜色
+man() {
+    env \
+    LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_md="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_me="$(printf "\e[0m")" \
+    LESS_TERMCAP_se="$(printf "\e[0m")" \
+    LESS_TERMCAP_so="$(printf "\e[1;41;33m")" \
+    LESS_TERMCAP_ue="$(printf "\e[0m")" \
+    LESS_TERMCAP_us="$(printf "\e[1;32m")" \
+    man "$@"
+}
+# man 手册章节
+man-table-of-contents() {
+    if [[ -z $1 ]]; then
+        echo "which man-page do you want to get table of contents?"
+        return 255
+    fi
+    env LANG=en_US.UTF-8 man "$1" | grep -P "^[A-Z]|^   [A-Z]"
+}
+# 设置代理
+http-proxy-set() {
+    proxy_addr_default=127.0.0.1
+    proxy_port_default=1080
+    echo -n "please input proxy addr(default is $proxy_addr_default): "
+    read proxy_addr
+    echo -n "please input proxy port(default is $proxy_port_default): "
+    read proxy_port
+    if [[ -z $proxy_addr ]]; then
+        proxy_addr=$proxy_addr_default
+    fi
+    if [[ -z $proxy_port ]]; then
+        proxy_port=$proxy_port_default
+    fi
+    proxy_server=http://$proxy_addr:$proxy_port
+    echo "setting http proxy server: $proxy_server"
+    export http_proxy=$proxy_server https_proxy=$proxy_server
+    unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
+}
+# 取消代理
+http-proxy-unset() {
+    unset http_proxy https_proxy
+}
+
+
+##########################################################
+# autojump
+##########################################################
+
+if [ -s $HOME/.autojump/share/autojump/autojump.bash ]; then
+    source $HOME/.autojump/share/autojump/autojump.bash
+elif [ -s /usr/local/share/autojump/autojump.bash ]; then
+    source /usr/local/share/autojump/autojump.bash
+elif [ -s /usr/share/autojump/autojump.bash ]; then
+    source /usr/share/autojump/autojump.bash
+fi
+
+
+##########################################################
+# bash_completion
+##########################################################
+
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+. /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+. /etc/bash_completion
+fi
+
+
+##########################################################
 # tmux
+##########################################################
+
 # 修复 msys2 下 tmux 的相关问题
 if [[ -n "$MSYSTEM" ]]; then
     # 修复 windows-terminal 上使用 msys2 tmux 无法启动
@@ -209,97 +264,19 @@ if [[ -n "$MSYSTEM" ]]; then
 fi
 alias t=tmux
 
-# 让所有 alias 支持 bash 补全
-if [[ -f "$HOME/.bash_completion_alias" ]]; then
-    source "$HOME"/.bash_completion_alias
-    if [[ -n $IsOSX ]]; then
-        aliasArray=($(alias | /usr/local/opt/gnu-sed/libexec/gnubin/sed -e '{s/alias //;s/=.*//}'))
-    else
-        aliasArray=($(alias | sed -e '{s/alias //;s/=.*//}'))
-    fi
-    for ali in "${aliasArray[@]}"; do
-        complete -F _complete_alias "$ali"
-    done
-fi
 
-# 设置有颜色的 man 手册
-man() {
-    env \
-    LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
-    LESS_TERMCAP_md="$(printf "\e[1;31m")" \
-    LESS_TERMCAP_me="$(printf "\e[0m")" \
-    LESS_TERMCAP_se="$(printf "\e[0m")" \
-    LESS_TERMCAP_so="$(printf "\e[1;41;33m")" \
-    LESS_TERMCAP_ue="$(printf "\e[0m")" \
-    LESS_TERMCAP_us="$(printf "\e[1;32m")" \
-    man "$@"
-}
+##########################################################
+# 其他设置
+##########################################################
 
-man-table-of-contents() {
-    if [[ -z $1 ]]; then
-        echo "which man-page do you want to get table of contents?"
-        return 255
-    fi
-    env LANG=en_US.UTF-8 man "$1" | grep -P "^[A-Z]|^   [A-Z]"
-}
-
-http-proxy-set() {
-    proxy_addr_default=127.0.0.1
-    proxy_port_default=1080
-    echo -n "please input proxy addr(default is $proxy_addr_default): "
-    read proxy_addr
-    echo -n "please input proxy port(default is $proxy_port_default): "
-    read proxy_port
-    if [[ -z $proxy_addr ]]; then
-        proxy_addr=$proxy_addr_default
-    fi
-    if [[ -z $proxy_port ]]; then
-        proxy_port=$proxy_port_default
-    fi
-    proxy_server=http://$proxy_addr:$proxy_port
-    echo "setting http proxy server: $proxy_server"
-    export http_proxy=$proxy_server https_proxy=$proxy_server
-    unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
-}
-
-if [[ -z $WSLHOST_IP && -f /etc/resolv.conf ]]; then
-    WSLHOST_IP=`grep "^nameserver" /etc/resolv.conf | head -n 1 | awk -F' ' '{print $2}'`
-    http-proxy-set-wsl() {
-        proxy_addr_default=$WSLHOST_IP
-        proxy_port_default=1080
-        echo -n "please input wsl proxy addr(default is $proxy_addr_default): "
-        read proxy_addr
-        echo -n "please input wsl proxy port(default is $proxy_port_default): "
-        read proxy_port
-        if [[ -z $proxy_addr ]]; then
-            proxy_addr=$proxy_addr_default
-        fi
-        if [[ -z $proxy_port ]]; then
-            proxy_port=$proxy_port_default
-        fi
-        proxy_server=http://$proxy_addr:$proxy_port
-        echo "setting http proxy server: $proxy_server"
-        export http_proxy=$proxy_server https_proxy=$proxy_server
-        unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
-    }
-fi
-
-http-proxy-unset() {
-    unset http_proxy https_proxy
-}
-
-# 设置其他环境变量
+# 默认编辑器
 export EDITOR=vim
 
 # golang
-if [[ $IsOSX ]]; then
-    export GOROOT=/usr/local/opt/go/libexec
+if [[ -d /usr/lib/go ]]; then
+    export GOROOT=/usr/lib/go
 else
-    if [[ -d /usr/lib/go ]]; then
-        export GOROOT=/usr/lib/go
-    else
-        export GOROOT=/opt/go
-    fi
+    export GOROOT=/opt/go
 fi
 export GOPATH=$HOME/go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
@@ -360,3 +337,7 @@ fi
 if [[ -f $HOME/.cargo/env ]]; then
     . "$HOME/.cargo/env"
 fi
+
+# opencode
+export PATH=/home/ri/.opencode/bin:$PATH
+
