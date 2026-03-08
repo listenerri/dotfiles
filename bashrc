@@ -287,50 +287,10 @@ if [[ -f "$HOME/.cocos2d-x-env" ]]; then
 fi
 
 # nodejs nvm
-# 下面这些复杂的判断只是为了当 nvm 的 default alias 到具体已安装的版本时，
-# 不再/延迟加载 nvm 脚本，而是直接 export 那么 default 版本到环境变量 PATH 中。
-# 如果需要长期使用非默认 lts 版本，或者不安装默认 lts 版本，可以执行如下命令设置默认版本：
-# nvm alias default <VersionName|lts/LtsName> 
-# 之后，再次打开终端时将不再加载 nvm，而是直接使用设置的 default 版本
 if [[ -d "$HOME/.nvm" ]]; then
     export NVM_DIR="$HOME/.nvm"
-    if [[ -f $NVM_DIR/alias/default ]]; then
-        # 延后加载 nvm
-        nvmDefaultNodeVersion="$(cat "$NVM_DIR/alias/default")"
-        while [[ -f $NVM_DIR/alias/$nvmDefaultNodeVersion ]]; do
-            # 防止 nvm alias 递归
-            nvmDefaultNodeVersionTmp="$(cat "$NVM_DIR/alias/$nvmDefaultNodeVersion")"
-            if [[ "$nvmDefaultNodeVersionTmp" == "$nvmDefaultNodeVersion" ]]; then
-                break
-            fi
-            nvmDefaultNodeVersion=$nvmDefaultNodeVersionTmp
-        done
-        nvmDefaultNodeVersionDir=$(find "$NVM_DIR/versions" -name "$nvmDefaultNodeVersion*" -and -type d | head -n 1)
-        if [[ -n "$nvmDefaultNodeVersion" &&  -n "$nvmDefaultNodeVersionDir" && -d "$nvmDefaultNodeVersionDir/bin" ]]; then
-            export PATH=$nvmDefaultNodeVersionDir/bin:$PATH
-            nvm() {
-                echo "lazy loading nvm..."
-                unset nvm
-                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-                [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-                echo "lazy loading nvm done"
-                nvm $@
-            }
-        else
-            echo "fallback to loading nvm..."
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-            echo "fallback to loading nvm done"
-        fi
-        unset nvmDefaultNodeVersion \
-            nvmDefaultNodeVersionTmp \
-            nvmDefaultNodeVersionDir
-    else
-        echo "loading nvm..."
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-        echo "loading nvm done"
-    fi
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
 # rust
@@ -340,4 +300,3 @@ fi
 
 # opencode
 export PATH=/home/ri/.opencode/bin:$PATH
-
