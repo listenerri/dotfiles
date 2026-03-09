@@ -300,3 +300,8 @@ fi
 
 # opencode
 export PATH=/home/ri/.opencode/bin:$PATH
+
+# uv autocompletion
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
+
