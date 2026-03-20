@@ -302,6 +302,8 @@ fi
 export PATH=/home/ri/.opencode/bin:$PATH
 
 # uv autocompletion
-eval "$(uv generate-shell-completion bash)"
-eval "$(uvx --generate-shell-completion bash)"
+if which uv > /dev/null 2>&1; then
+    eval "$(uv generate-shell-completion bash)"
+    eval "$(uvx --generate-shell-completion bash)"
+fi
 
