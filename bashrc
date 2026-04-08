@@ -200,12 +200,12 @@ http-proxy-set() {
     fi
     proxy_server=http://$proxy_addr:$proxy_port
     echo "setting http proxy server: $proxy_server"
-    export http_proxy=$proxy_server https_proxy=$proxy_server
+    export http_proxy=$proxy_server https_proxy=$proxy_server HTTP_PROXY=$proxy_server HTTPS_PROXY=$proxy_server NO_PROXY=localhost,127.0.0.1
     unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
 }
 # 取消代理
 http-proxy-unset() {
-    unset http_proxy https_proxy
+    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
 }
 
 
