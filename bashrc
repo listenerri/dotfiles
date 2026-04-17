@@ -188,6 +188,12 @@ man-table-of-contents() {
 http-proxy-set() {
     proxy_addr_default=127.0.0.1
     proxy_port_default=1080
+    if [[ -n "$1" ]]; then
+        proxy_addr_default=$1
+    fi
+    if [[ -n "$2" ]]; then
+        proxy_port_default=$2
+    fi
     echo -n "please input proxy addr(default is $proxy_addr_default): "
     read proxy_addr
     echo -n "please input proxy port(default is $proxy_port_default): "
@@ -202,6 +208,11 @@ http-proxy-set() {
     echo "setting http proxy server: $proxy_server"
     export http_proxy=$proxy_server https_proxy=$proxy_server HTTP_PROXY=$proxy_server HTTPS_PROXY=$proxy_server NO_PROXY=localhost,127.0.0.1
     unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
+}
+http-proxy-set-wsl() {
+    proxy_addr_default=$(ip route | grep default | awk '{print $3}')
+    proxy_port_default=1080
+    http-proxy-set "$proxy_addr_default" "$proxy_port_default"
 }
 # 取消代理
 http-proxy-unset() {
