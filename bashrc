@@ -283,6 +283,11 @@ alias t=tmux
 # 默认编辑器
 export EDITOR=vim
 
+# msys2 在 windows terminal 中丢失了 MSYS 环境变量，导致无法创建真实的符号链接
+if [[ -n "$MSYSTEM" && -z "$MSYS" ]]; then
+    export MSYS=winsymlinks:nativestrict
+fi
+
 # golang
 if [[ -d /usr/lib/go ]]; then
     export GOROOT=/usr/lib/go
