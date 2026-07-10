@@ -257,7 +257,7 @@ if [[ -n "$MSYSTEM" ]]; then
             ARGS="$@"
             # 修复 msys2 下 tmux 启动慢
             # https://github.com/tmux/tmux/issues/3428
-            pgrep tmux > /dev/null 2>&1 || rm -rf "/tmp/tmux-${UID}/default"
+            pgrep tmux > /dev/null || rm -rf "/tmp/tmux-${UID}/default"
             script -q -c "command tmux $ARGS" /dev/null
             unset ARGS
         }
@@ -267,7 +267,7 @@ if [[ -n "$MSYSTEM" ]]; then
             ARGS="$@"
             # 修复 msys2 下 tmux 启动慢
             # https://github.com/tmux/tmux/issues/3428
-            pgrep tmux > /dev/null 2>&1 || rm -rf "/tmp/tmux-${UID}/default"
+            pgrep tmux > /dev/null || rm -rf "/tmp/tmux-${UID}/default"
             command tmux $ARGS
             unset ARGS
         }
