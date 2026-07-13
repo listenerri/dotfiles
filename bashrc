@@ -289,12 +289,7 @@ if [[ -n "$MSYSTEM" && -z "$MSYS" ]]; then
 fi
 
 # golang
-if [[ -d /usr/lib/go ]]; then
-    export GOROOT=/usr/lib/go
-else
-    export GOROOT=/opt/go
-fi
-export GOPATH=$HOME/go
+# 现代 go 版本已不需要设置手动 GOROOT 和 GOPATH 变量
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 # cocos2d-x
