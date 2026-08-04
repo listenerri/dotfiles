@@ -289,8 +289,8 @@ if [[ -n "$MSYSTEM" && -z "$MSYS" ]]; then
 fi
 
 # golang
-# 现代 go 版本已不需要设置手动 GOROOT 和 GOPATH 变量
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
 
 # cocos2d-x
 if [[ -f "$HOME/.cocos2d-x-env" ]]; then
@@ -303,6 +303,10 @@ if [[ -d "$HOME/.nvm" ]]; then
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # rust
 if [[ -f $HOME/.cargo/env ]]; then
