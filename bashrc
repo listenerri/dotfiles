@@ -27,7 +27,6 @@ bind "set completion-ignore-case on"
 # bash 环境变量
 ##########################################################
 
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 # 不把重复的行和空格开头的行加入历史记录
 export HISTCONTROL=ignoreboth
 # 设置退出 shell 时，当前 shell 中的最后多少行命令被写入历史记录文件
@@ -292,3 +291,5 @@ if which uv > /dev/null 2>&1; then
     eval "$(uvx --generate-shell-completion bash)"
 fi
 
+# 将 HOME 目录下的 bin 最后加入 PATH 中，以确保优先级最高
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
