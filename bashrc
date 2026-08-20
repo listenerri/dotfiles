@@ -282,9 +282,6 @@ if [[ -f $HOME/.cargo/env ]]; then
     . "$HOME/.cargo/env"
 fi
 
-# opencode
-export PATH=/home/ri/.opencode/bin:$PATH
-
 # uv autocompletion
 if which uv > /dev/null 2>&1; then
     eval "$(uv generate-shell-completion bash)"
