@@ -108,6 +108,14 @@ alias man-zh='LANG=zh_CN.UTF-8 man'
 
 alias t=tmux
 
+# 禁止使用 rm
+# 使用 trash 把文件放入回收站，而不是直接删除它
+#
+# 要自动清理回收站中 30 天前的文件，可以使用定时任务
+# 查看当前定时任务列表：crontab -l
+# 新增自动清理定时任务：(crontab -l ; echo "@daily $(which trash-empty) 30") | crontab -
+alias rm='echo "use trash instead of rm, or type \rm if you insist"; false'
+
 # 让所有 alias 支持 bash 补全
 if [[ -f "$HOME/.bash_completion_alias" ]]; then
     source "$HOME"/.bash_completion_alias
