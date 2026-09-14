@@ -34,7 +34,8 @@ export HISTSIZE=20000
 # 设置历史记录文件中可以存储多少行命令
 export HISTFILESIZE=20000
 # PROMPT_COMMAND 的内容会在每次执行命令后都执行
-export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+# 此变量不适合 export
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 
 ##########################################################
