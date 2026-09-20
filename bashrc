@@ -1,5 +1,52 @@
+
 ##########################################################
-# 如果是非交互式 shell 则直接退出
+# 登录 shell 环境变量
+# 有些工具使用登录非交互式 shell 运行
+##########################################################
+
+# fcitx 输入法
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+# 默认编辑器
+export EDITOR=vim
+
+# golang
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+# cocos2d-x
+if [[ -f "$HOME/.cocos2d-x-env" ]]; then
+    source "$HOME/.cocos2d-x-env"
+fi
+
+# nodejs nvm
+if [[ -d "$HOME/.nvm" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# bun
+if [[ -d "$HOME/.bun" ]]; then
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# rust
+if [[ -f $HOME/.cargo/env ]]; then
+    . "$HOME/.cargo/env"
+fi
+
+# 用户 bin 目录
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+
+
+
+
+##########################################################
+# 非交互式 shell 在此退出
 ##########################################################
 
 [[ $- != *i* ]] && return
@@ -9,33 +56,45 @@ case $- in
 esac
 
 
+
+
+##########################################################
+# 交互 shell 环境变量
+##########################################################
+
+# 不把重复的行和空格开头的行加入历史记录
+export HISTCONTROL=ignoreboth
+
+# 设置退出 shell 时，当前 shell 中的最后多少行命令被写入历史记录文件
+export HISTSIZE=20000
+
+# 设置历史记录文件中可以存储多少行命令
+export HISTFILESIZE=20000
+
+# PROMPT_COMMAND 的内容会在每次执行命令后都执行
+# 此变量不适合 export
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+
+
+
 ##########################################################
 # bash 选项
 ##########################################################
 
 # 追加历史记录而不是覆盖
 shopt -s histappend
+
 # 执行每个命令后检查窗口大小并且在必要时更新行数和列数
 shopt -s checkwinsize
+
 # 当只输入目录并会车时执行对应的 cd 命令
 shopt -s autocd
+
 # 补全时忽略大小写
 bind "set completion-ignore-case on"
 
 
-##########################################################
-# bash 环境变量
-##########################################################
-
-# 不把重复的行和空格开头的行加入历史记录
-export HISTCONTROL=ignoreboth
-# 设置退出 shell 时，当前 shell 中的最后多少行命令被写入历史记录文件
-export HISTSIZE=20000
-# 设置历史记录文件中可以存储多少行命令
-export HISTFILESIZE=20000
-# PROMPT_COMMAND 的内容会在每次执行命令后都执行
-# 此变量不适合 export
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 
 ##########################################################
@@ -127,6 +186,8 @@ if [[ -f "$HOME/.bash_completion_alias" ]]; then
 fi
 
 
+
+
 ##########################################################
 # 设置提示符
 ##########################################################
@@ -170,6 +231,8 @@ if [[ "$(type -t __git_ps1)" == "function" ]]; then
 fi
 
 
+
+
 ##########################################################
 # 函数定义
 ##########################################################
@@ -186,6 +249,7 @@ man() {
     LESS_TERMCAP_us="$(printf "\e[1;32m")" \
     man "$@"
 }
+
 # man 手册章节
 man-table-of-contents() {
     if [[ -z $1 ]]; then
@@ -194,6 +258,7 @@ man-table-of-contents() {
     fi
     env LANG=en_US.UTF-8 man "$1" | grep -P "^[A-Z]|^   [A-Z]"
 }
+
 # 设置代理
 http-proxy-set() {
     proxy_addr_default=127.0.0.1
@@ -219,21 +284,34 @@ http-proxy-set() {
     export http_proxy=$proxy_server https_proxy=$proxy_server HTTP_PROXY=$proxy_server HTTPS_PROXY=$proxy_server NO_PROXY=localhost,127.0.0.1
     unset proxy_addr_default proxy_port_default proxy_addr proxy_port proxy_server
 }
+
+# wsl 设置代理
 http-proxy-set-wsl() {
     proxy_addr_default=$(ip route | grep default | awk '{print $3}')
     proxy_port_default=1080
     http-proxy-set "$proxy_addr_default" "$proxy_port_default"
 }
+
 # 取消代理
 http-proxy-unset() {
     unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
 }
 
 
+
+
 ##########################################################
-# autojump
+# 其他
 ##########################################################
 
+# bash_completion
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+. /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+. /etc/bash_completion
+fi
+
+# autojump
 if [ -s $HOME/.autojump/share/autojump/autojump.bash ]; then
     source $HOME/.autojump/share/autojump/autojump.bash
 elif [ -s /usr/local/share/autojump/autojump.bash ]; then
@@ -242,60 +320,9 @@ elif [ -s /usr/share/autojump/autojump.bash ]; then
     source /usr/share/autojump/autojump.bash
 fi
 
-
-##########################################################
-# bash_completion
-##########################################################
-
-if [ -f /usr/share/bash-completion/bash_completion ]; then
-. /usr/share/bash-completion/bash_completion
-elif [ -f /etc/bash_completion ]; then
-. /etc/bash_completion
-fi
-
-
-##########################################################
-# 其他设置
-##########################################################
-
-# 默认编辑器
-export EDITOR=vim
-
-# msys2 在 windows terminal 中丢失了 MSYS 环境变量，导致无法创建真实的符号链接
-if [[ -n "$MSYSTEM" && -z "$MSYS" ]]; then
-    export MSYS=winsymlinks:nativestrict
-fi
-
-# golang
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-
-# cocos2d-x
-if [[ -f "$HOME/.cocos2d-x-env" ]]; then
-    source "$HOME/.cocos2d-x-env"
-fi
-
-# nodejs nvm
-if [[ -d "$HOME/.nvm" ]]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# rust
-if [[ -f $HOME/.cargo/env ]]; then
-    . "$HOME/.cargo/env"
-fi
-
 # uv autocompletion
 if which uv > /dev/null 2>&1; then
     eval "$(uv generate-shell-completion bash)"
     eval "$(uvx --generate-shell-completion bash)"
 fi
 
-# 将 HOME 目录下的 bin 最后加入 PATH 中，以确保优先级最高
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH

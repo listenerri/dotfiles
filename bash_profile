@@ -16,11 +16,3 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-##################Costom Config###################
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-
-# auto startx after login
-#[[ -z $DISPLAY && $XDG_VTNR -eq 1 || $XDG_VTNR -eq 2 ]] && exec startx
