@@ -4,6 +4,15 @@
 # 有些工具使用登录非交互式 shell 运行
 ##########################################################
 
+# 临时工具函数，用完即删
+# 防止 PATH 重复追加
+path_prepend() {
+    case ":$PATH:" in
+        *":$1:"*) ;;
+        *) export PATH="$1:$PATH" ;;
+    esac
+}
+
 # fcitx 输入法
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -14,7 +23,7 @@ export EDITOR=vim
 
 # golang
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+path_prepend "$GOPATH/bin"
 
 # cocos2d-x
 if [[ -f "$HOME/.cocos2d-x-env" ]]; then
@@ -31,7 +40,7 @@ fi
 # bun
 if [[ -d "$HOME/.bun" ]]; then
     export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
+    path_prepend "$BUN_INSTALL/bin"
 fi
 
 # rust
@@ -40,7 +49,11 @@ if [[ -f $HOME/.cargo/env ]]; then
 fi
 
 # 用户 bin 目录
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+path_prepend "$HOME/.local/bin"
+path_prepend "$HOME/bin"
+
+# 删除临时工具函数
+unset -f path_prepend
 
 
 
