@@ -48,6 +48,9 @@ if [[ -f $HOME/.cargo/env ]]; then
     . "$HOME/.cargo/env"
 fi
 
+# opencode
+path_prepend "$HOME/.opencode/bin"
+
 # 用户 bin 目录
 path_prepend "$HOME/.local/bin"
 path_prepend "$HOME/bin"
